@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>Babylon.js sample code</title>
+    <!-- Babylon.js -->
+    <script src="http://www.babylonjs.com/hand.minified-1.2.js"></script>
+    <script src="http://www.babylonjs.com/babylon.js"></script>
+    <style>
+        #scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            touch-action: none;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="scene"></canvas>
+
+
+
+<script>
+    var canvas = document.getElementById("scene");
+    var engine = new BABYLON.Engine(canvas, true);
+
+    function createScene() {
+
+
+        const scene = new BABYLON.Scene(engine);
+        scene.clearColor = new BABYLON.Color3(1,1,1);
+
+        const camera = new BABYLON.ArcRotateCamera("Camera",Math.PI/4, Math.PI/4, 10, BABYLON.Vector3.Zero(), scene);
+        camera.fov = 1.2;
+
+        camera.attachControl(canvas, true);
+
+        const light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1/2), scene);
+
+
+        const box = BABYLON.Mesh.CreateBox("box", 1, scene);
+
+
+        function onPointerUp(event) {
+
+            const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
+
+            if (pickInfo.hit) {
+
+                const currentMesh = pickInfo.pickedMesh;
+                const newBox = currentMesh.clone();
+                newBox.position = currentMesh.position.clone();
+
+                const diff = currentMesh.position.subtract(pickInfo.pickedPoint);
+
+
+                ['x', 'y', 'z'].forEach((dimension) => {
+                    if (diff[dimension] >= 0.5 - 0.001) {
+                    newBox.position[dimension]--;
+                } else
+                if (diff[dimension] <= -0.5 + 0.001) {
+                    newBox.position[dimension]++;
+                }
+            });
+
+
+
+            }
+
+        }
+
+
+        canvas.addEventListener("pointerup", onPointerUp, false);
+
+
+
+        return scene;
+    }
+
+    var scene = createScene();
+
+    engine.runRenderLoop(function () {
+        scene.render();
+    });
+
+    // Resize
+    window.addEventListener("resize", function () {
+        engine.resize();
+    });
+</script>
+</body>
+</html>
