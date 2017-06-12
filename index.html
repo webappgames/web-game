@@ -1,19 +1,24 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>Simple web game</title>
+    <title>Simple web game 0.3.0</title>
     <!-- Babylon.js -->
     <script src="http://www.babylonjs.com/hand.minified-1.2.js"></script>
     <script src="http://www.babylonjs.com/babylon.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.8.1/immutable.min.js"></script>
+    <script src="http://wzrd.in/standalone/uuid@latest"></script>
     <link rel="stylesheet" href="./src/style/index.css">
 </head>
 <body>
 
 <canvas id="scene"></canvas>
+<script src="./src/script/state/default-state.js"></script>
+<script src="./src/script/state-reducers/state-reducer.js"></script>
+<script src="./src/script/scene/create-scene.js"></script>
+<script src="./src/script/scene/update-scene.js"></script>
 <script src="./src/script/browser.js"></script>
-
 </body>
 </html>
