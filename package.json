@@ -1,0 +1,37 @@
+{
+  "name": "web-game",
+  "version": "0.5.0",
+  "dependencies": {
+    "@types/es6-promise": "0.0.32",
+    "@types/lodash": "^4.14.54",
+    "@types/react": "^15.0.11",
+    "@types/react-dom": "^0.14.23",
+    "awesome-typescript-loader": "^3.0.4",
+    "babylonjs": "^3.0.1-alpha",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-typescript": "^3.1.5",
+    "gulp-webpack": "^1.5.0",
+    "immutable": "^3.8.1",
+    "lodash": "^4.17.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-fontawesome": "^1.5.0",
+    "redux": "^3.6.0",
+    "run-sequence": "^1.2.2",
+    "source-map-loader": "^0.1.6",
+    "superagent": "^3.5.2",
+    "superagent-promise": "^1.1.0",
+    "ts-loader": "^2.0.0",
+    "ts-promise": "^0.3.4",
+    "typescript": "^2.1.6",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/es6-promise": "0.0.32",
+    "@types/node": "^7.0.5",
+    "browser-sync": "^2.18.8",
+    "browser-sync-webpack-plugin": "^1.1.4"
+  }
+}

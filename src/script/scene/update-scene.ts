@@ -1,4 +1,7 @@
-function updateScene(scene, state) {
+import * as Immutable from "immutable";
+import * as BABYLON from 'babylonjs';
+
+export default function updateScene(scene:BABYLON.Scene, state: Immutable.Map<string,any>):void {
     scene.meshes.forEach((mesh) => {
         mesh.dispose();
     });

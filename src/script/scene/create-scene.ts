@@ -1,6 +1,11 @@
-function createScene(canvas, engine) {
+import * as Immutable from "immutable";
+import * as BABYLON from 'babylonjs';
+import {Store, Action} from 'redux';
+import * as uuid from 'uuid';
+
+export default function createScene(canvas:HTMLCanvasElement, engine:BABYLON.Engine, getStore:()=>Store<Immutable.Map<string,any>>):BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(1, 1, 1);
+    scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 
     const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;
@@ -32,7 +37,7 @@ function createScene(canvas, engine) {
                         }
                     });
 
-                    store.dispatch({
+                    getStore().dispatch({
                         type: 'BLOCK_ADD', newBlock: {
                             id: uuid.v4(),
                             position: {
@@ -41,11 +46,11 @@ function createScene(canvas, engine) {
                                 z: Math.floor(position.z)
                             }
                         }
-                    });
+                    } as Action);
                     break;
 
                 case 2:
-                    store.dispatch({type: 'BLOCK_DELETE', blockId: currentMesh.name});
+                    getStore().dispatch({type: 'BLOCK_DELETE', blockId: currentMesh.name} as Action);
                     break;
             }
         }
