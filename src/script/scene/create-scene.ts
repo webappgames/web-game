@@ -2,6 +2,7 @@ import * as Immutable from "immutable";
 import * as BABYLON from 'babylonjs';
 import {Store, Action} from 'redux';
 import * as uuid from 'uuid';
+import {createActionBlockDelete} from '../state-reducers/state-reducer.ts';
 
 export default function createScene(canvas:HTMLCanvasElement, engine:BABYLON.Engine, getStore:()=>Store<Immutable.Map<string,any>>):BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
@@ -50,7 +51,7 @@ export default function createScene(canvas:HTMLCanvasElement, engine:BABYLON.Eng
                     break;
 
                 case 2:
-                    getStore().dispatch({type: 'BLOCK_DELETE', blockId: currentMesh.name} as Action);
+                    getStore().dispatch(createActionBlockDelete(currentMesh.name}));
                     break;
             }
         }

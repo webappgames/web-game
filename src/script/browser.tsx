@@ -6,8 +6,10 @@ import createUriFromState from './state/create-uri-from-state.ts';
 import createScene from './scene/create-scene.ts';
 import updateScene from './scene/update-scene.ts';
 import stateReducer from './state-reducers/state-reducer.ts';
+import Root from './ui/root.tsx';
 
 let store;
+const root = document.getElementById("root") as HTMLDivElement;
 const canvas = document.getElementById("scene") as HTMLCanvasElement;
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, ()=>store);
@@ -33,6 +35,14 @@ function initializeStore() {
     });
     store.subscribe(render);
     render();
+
+
+    render(
+        //<Provider store={store}>
+            <Root />
+        //</Provider>,
+        root
+    )
 }
 window.onpopstate = initializeStore;
 initializeStore();
