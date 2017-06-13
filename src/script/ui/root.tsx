@@ -1,8 +1,12 @@
+import Heading from './heading.tsx';
+
 export const Root
 ()=>
     <div>
         <nav className="top">
-            <h1 className="left"></h1>
+            <div className="left">
+                <Heading/>
+            </div>
             <ul>
                 <li>Menu 1</li>
                 <li>Menu 2</li>

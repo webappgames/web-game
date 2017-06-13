@@ -38,9 +38,9 @@ function initializeStore() {
 
 
     render(
-        //<Provider store={store}>
+        <Provider store={store}>
             <Root />
-        //</Provider>,
+        </Provider>,
         root
     )
 }
