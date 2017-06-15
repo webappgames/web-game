@@ -6,7 +6,7 @@ export default function Root() {
         <div>
             <nav className="top">
                 <div className="left">
-                    {/*<Heading/>*/}
+                    <Heading/>
                 </div>
                 <ul>
                     <li>Menu 1</li>
