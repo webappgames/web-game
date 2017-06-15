@@ -1,11 +1,15 @@
 import * as BABYLON from 'babylonjs';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {createStore} from 'redux';
+import { Provider } from 'react-redux';
 import createStateFromUri from './state/create-state-from-uri.ts';
 import createTitleFromState from './state/create-title-from-state.ts';
 import createUriFromState from './state/create-uri-from-state.ts';
 import createScene from './scene/create-scene.ts';
 import updateScene from './scene/update-scene.ts';
 import stateReducer from './state-reducers/state-reducer.ts';
+import wrapReducer from './util-functions/wrap-reducer.ts';
 import Root from './ui/root.tsx';
 
 let store;
@@ -25,7 +29,7 @@ function render() {
 }
 
 function initializeStore() {
-    store = createStore(stateReducer, createStateFromUri(document.location.toString()));
+    store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
     store.subscribe(()=> {
         const state = store.getState();
         const uri = createUriFromState(state);
@@ -37,7 +41,7 @@ function initializeStore() {
     render();
 
 
-    render(
+    ReactDOM.render(
         <Provider store={store}>
             <Root />
         </Provider>,

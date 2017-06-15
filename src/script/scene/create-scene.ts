@@ -2,8 +2,8 @@ import * as Immutable from "immutable";
 import * as BABYLON from 'babylonjs';
 import {Store, Action} from 'redux';
 import {createActionBlockDelete, createActionBlockAdd} from '../state-reducers/state-reducer.ts';
-import Block from '../classes/block.ts';
-import Position3 from '../classes/position3.ts';
+import createBlock from '../creators/block.ts';
+import createPosition3 from '../creators/position3.ts';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Immutable.Map<string,any>>): BABYLON.Scene {
@@ -42,59 +42,56 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
                     getStore().dispatch(
                         createActionBlockAdd(
-                            new Block(
+                            createBlock(
                                 undefined,
-                                new Position3(
+                                createPosition3(
                                     Math.floor(position.x),
                                     Math.floor(position.y),
                                     Math.floor(position.z)
                                 )
                             )
-                        );
+                        )
+                    );
 
                     break;
 
                 case 2:
-                    getStore().dispatch(createActionBlockDelete(currentMesh.name
+                    getStore().dispatch(createActionBlockDelete(currentMesh.name));
+                    break;
             }
-        )
-)
-;
-break;
-}
-}
-}
-
-function onContextMenu(event) {
-    event.preventDefault()
-}
-
-let lastMesh = null;
-
-function onPointerMove(event) {
-    if (lastMesh) {
-        lastMesh.material = materialNormal;
-    }
-    const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
-    if (pickInfo.hit) {
-        const currentMesh = pickInfo.pickedMesh;
-        currentMesh.material = materialHover;
-        lastMesh = currentMesh;
-    } else {
-        lastMesh = null;
+        }
     }
 
-}
+    function onContextMenu(event) {
+        event.preventDefault()
+    }
+
+    let lastMesh = null;
+
+    function onPointerMove(event) {
+        if (lastMesh) {
+            lastMesh.material = materialNormal;
+        }
+        const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
+        if (pickInfo.hit) {
+            const currentMesh = pickInfo.pickedMesh;
+            currentMesh.material = materialHover;
+            lastMesh = currentMesh;
+        } else {
+            lastMesh = null;
+        }
+
+    }
 
 
-canvas.addEventListener("pointerup", onPointerUp, false);
-canvas.addEventListener("contextmenu", onContextMenu, false);
-canvas.addEventListener("pointermove", onPointerMove, false);
+    canvas.addEventListener("pointerup", onPointerUp, false);
+    canvas.addEventListener("contextmenu", onContextMenu, false);
+    canvas.addEventListener("pointermove", onPointerMove, false);
 
-scene.onDispose = function () {
-    canvas.removeEventListener("pointerup", onPointerUp);
-    canvas.removeEventListener("contextmenu", onContextMenu);
-    canvas.removeEventListener("pointermove", onPointerMove);
-};
-return scene;
+    scene.onDispose = function () {
+        canvas.removeEventListener("pointerup", onPointerUp);
+        canvas.removeEventListener("contextmenu", onContextMenu);
+        canvas.removeEventListener("pointermove", onPointerMove);
+    };
+    return scene;
 }
