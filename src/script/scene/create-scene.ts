@@ -1,12 +1,11 @@
-import * as Immutable from "immutable";
 import * as BABYLON from 'babylonjs';
 import {Store, Action} from 'redux';
-import {createActionBlockDelete, createActionBlockAdd} from '../state-reducers/state-reducer.ts';
+import {createActionBlockDelete, createActionBlockAdd} from '../state-reducers/blocks.ts';
 import createBlock from '../creators/block.ts';
 import createPosition3 from '../creators/position3.ts';
 
 
-export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Immutable.Map<string,any>>): BABYLON.Scene {
+export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Object>): BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 

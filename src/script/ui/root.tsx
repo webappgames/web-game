@@ -1,5 +1,6 @@
 import * as React from "react";
 import Heading from './heading.tsx';
+import Palette from './palette.tsx';
 
 export default function Root() {
     return (
@@ -20,9 +21,11 @@ export default function Root() {
                 </div>
             </nav>
 
-            <nav className="left">
 
+            <nav className="left">
+                <Palette/>
             </nav>
+
 
 
             <footer>

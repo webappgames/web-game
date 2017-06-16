@@ -8,7 +8,7 @@ import createTitleFromState from './state/create-title-from-state.ts';
 import createUriFromState from './state/create-uri-from-state.ts';
 import createScene from './scene/create-scene.ts';
 import updateScene from './scene/update-scene.ts';
-import stateReducer from './state-reducers/state-reducer.ts';
+import stateReducer from './state-reducers/index.ts';
 import wrapReducer from './util-functions/wrap-reducer.ts';
 import Root from './ui/root.tsx';
 

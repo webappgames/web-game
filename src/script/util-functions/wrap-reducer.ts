@@ -4,7 +4,7 @@ export default function wrapReducer(reducer){
 
         return function (oldState,action) {
             console.groupCollapsed(`==[${action.type}]==>`);
-            console.log(oldState.toJS());
+            console.log(oldState);
             console.log('||');
             console.log('||');
 
@@ -15,12 +15,11 @@ export default function wrapReducer(reducer){
             console.log('||');
             console.log('||');
             console.log('\\/');
-            console.log(newState.toJS());
-            console.log('(Immutable)',newState);
+            console.log(newState);
 
-            if (oldState.equals(newState)) {
+            /*if (oldState.equals(newState)) {
                 console.log('==>States are equal');
-            }
+            }*/
             console.groupEnd();
 
             return newState;

@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => {
     return {
-        blocksSize:state.get('blocks').size
+        blocksSize:state.blocks.length
     }
 };
 
