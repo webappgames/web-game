@@ -4,6 +4,7 @@ const rename = require('gulp-rename');
 const ts = require('gulp-typescript');
 const gulpWebpack = require('gulp-webpack');
 const webpack = require('webpack');
+const plumber = require('gulp-plumber');
 
 const sass = require('gulp-sass');
 const runSequence = require('run-sequence');
@@ -19,7 +20,6 @@ gulp.task('browser-sync', function () {
         , 'build-css'
         , 'browser-sync-build-js'
         , 'browser-sync-watch');
-
 });
 
 
@@ -67,6 +67,12 @@ gulp.task('build-css', function () {
 
 
     const stream = gulp.src("./src/style/index.scss")
+            .pipe(plumber({
+                errorHandler: function (err) {
+                    console.log(err);
+                    this.emit('end');
+                }
+            }))
             .pipe(sass())
             .pipe(rename("./index.css"))
             .pipe(gulp.dest("./dist"))
@@ -87,6 +93,12 @@ gulp.task('build-css', function () {
 
         gulp.task('build-js-' + target + '-' + environment, function () {
             return gulp.src('./src/script')
+                .pipe(plumber({
+                    errorHandler: function (err) {
+                        console.log(err);
+                        this.emit('end');
+                    }
+                }))
                 .pipe(gulpWebpack({
                     entry: {
                         index: './src/script/' + target + '.tsx'

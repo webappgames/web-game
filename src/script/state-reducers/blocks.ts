@@ -17,6 +17,7 @@ export function createActionBlockAdd(newBlock: Object) {
 }
 
 
+
 export default function blocks(blocks = [], action) {
     switch (action.type) {
 
