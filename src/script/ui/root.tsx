@@ -9,7 +9,7 @@ export default function Root() {
                 <div className="left">
                     <Heading/>
                 </div>
-                <ul>
+                {/*<ul>
                     <li>Menu 1</li>
                     <li>Menu 2</li>
                     <li>Menu 3</li>
@@ -18,7 +18,7 @@ export default function Root() {
 
                     <button>Uložit</button>
 
-                </div>
+                </div>*/}
             </nav>
 
 

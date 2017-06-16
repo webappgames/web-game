@@ -20,11 +20,12 @@ export function createActionBlockAdd(newBlock: Object) {
 export default function blocks(blocks = [], action) {
     switch (action.type) {
 
-        case BLOCK_DELETE:
-            return blocks.filter((block)=>block.id!==action.blockId);
-
         case BLOCK_ADD:
             return blocks.concat([action.newBlock]);
+
+
+        case BLOCK_DELETE:
+            return blocks.filter((block)=>block.id!==action.blockId);
 
         default:
             return blocks;
