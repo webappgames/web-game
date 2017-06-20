@@ -11,11 +11,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onOptionClick:(index)=>dispatch(createActionPaletteOptionSelect(index))
+        onOptionSelect:(index)=>dispatch(createActionPaletteOptionSelect(index))
+        onOptionDelete:(index)=>dispatch(createActionPaletteOptionDelete(index))
+        onOptionCreate:(color)=>dispatch(createActionPaletteOptionAdd(color))
     }
 };
 
-
+let color='#ff0000';
 let Palette = ({ palette,onOptionClick }) => {
     return (
         <ul>
@@ -24,10 +26,30 @@ let Palette = ({ palette,onOptionClick }) => {
                     key={index}
                     style={{backgroundColor:option}}
                     className={palette.current===index?'selected':undefined}
-                    onClick={()=>onOptionClick(index)}
+                    onClick={()=>onOptionSelect(index)}
 
-                >{option}</li>)
-            }
+                >
+                    {option}
+
+                    <div className="options">
+    <div className="arrow"></div>
+            <button onClick={()=>onOptionSelect(index)}><FontAwesome name="check">Select</button>
+            <button onClick={()=>onOptionDelete(index)}><FontAwesome name="trash">Delete</button>
+        </div>
+
+                </li>
+            )}
+
+            <li className="plus">
+
+    <FontAwesome name="plus">
+    <div className="options">
+        <div className="arrow"></div>
+        <input type="color" value={color} onChange={(event)=>color=event.target.color}>
+        <button onClick={()=>onOptionCreate(color)}><FontAwesome name="color">Add</button>
+        </div>
+            </li>
+
         </ul>
     )
 };
