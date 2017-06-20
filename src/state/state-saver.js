@@ -1,4 +1,4 @@
-import * as Immutable from "immutable";
+// @flow
 import * as uuid from 'uuid';
 
 export function loadState(key:string):Object{

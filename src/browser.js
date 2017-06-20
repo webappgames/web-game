@@ -1,20 +1,27 @@
+// @flow
 import * as BABYLON from 'babylonjs';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
-import createStateFromUri from './state/create-state-from-uri.ts';
-import createTitleFromState from './state/create-title-from-state.ts';
-import createUriFromState from './state/create-uri-from-state.ts';
-import createScene from './scene/create-scene.ts';
-import updateScene from './scene/update-scene.ts';
-import stateReducer from './state-reducers/index.ts';
-import wrapReducer from './util-functions/wrap-reducer.ts';
-import Root from './ui/root.tsx';
+import createStateFromUri from './state/create-state-from-uri';
+import createTitleFromState from './state/create-title-from-state';
+import createUriFromState from './state/create-uri-from-state';
+import createScene from './scene/create-scene';
+import updateScene from './scene/update-scene';
+import stateReducer from './state-reducers/index';
+import wrapReducer from './util-functions/wrap-reducer';
+import Root from './ui/root';
+
+import './ui/style/root.scss';
+/*import './style/menu-top.scss';
+import './style/menu-left.scss';
+import './style/footer.scss';*/
+
 
 let store;
-const root = document.getElementById("root") as HTMLDivElement;
-const canvas = document.getElementById("scene") as HTMLCanvasElement;
+const root = document.getElementById("root");
+const canvas = document.getElementById("scene");
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, ()=>store);
 engine.runRenderLoop(function () {

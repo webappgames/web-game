@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onOptionClick:(index)=>dispatch(createActionPaletteOptionSelect(index));
+        onOptionClick:(index)=>dispatch(createActionPaletteOptionSelect(index))
     }
 };
 

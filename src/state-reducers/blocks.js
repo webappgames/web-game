@@ -18,7 +18,7 @@ export function createActionBlockAdd(newBlock: Object) {
 
 
 
-export default function blocks(blocks = [], action) {
+export default function blocks(blocks = defaultBlocks, action) {
     switch (action.type) {
 
         case BLOCK_ADD:

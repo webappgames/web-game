@@ -1,10 +1,13 @@
 import * as React from "react";
-import Heading from './heading.tsx';
-import Palette from './palette.tsx';
+import Heading from './heading';
+import Palette from './palette';
+
 
 export default function Root() {
     return (
-        <div>
+        <div className="root">
+
+
             <nav className="top">
                 <div className="left">
                     <Heading/>

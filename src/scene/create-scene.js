@@ -1,8 +1,8 @@
 import * as BABYLON from 'babylonjs';
 import {Store, Action} from 'redux';
-import {createActionBlockDelete, createActionBlockAdd} from '../state-reducers/blocks.ts';
-import createBlock from '../creators/block.ts';
-import createPosition3 from '../creators/position3.ts';
+import {createActionBlockDelete, createActionBlockAdd} from '../state-reducers/blocks';
+import createBlock from '../creators/block';
+import createPosition3 from '../creators/position3';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Object>): BABYLON.Scene {

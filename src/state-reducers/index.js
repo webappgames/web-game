@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import blocks from './blocks.ts'
-import palette from './palette.ts'
+import blocks from './blocks'
+import palette from './palette'
 
 
 export default combineReducers({
