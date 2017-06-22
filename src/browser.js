@@ -13,11 +13,6 @@ import stateReducer from './state-reducers/index';
 import wrapReducer from './util-functions/wrap-reducer';
 import Root from './ui/root';
 
-import './ui/style/root.scss';
-/*import './style/menu-top.scss';
-import './style/menu-left.scss';
-import './style/footer.scss';*/
-
 
 let store;
 const root = document.getElementById("root");

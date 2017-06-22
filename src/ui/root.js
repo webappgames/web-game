@@ -3,6 +3,12 @@ import Heading from './heading';
 import Palette from './palette';
 
 
+import './style/root.scss';
+import './style/menu-top.scss';
+ import './style/menu-left.scss';
+ import './style/footer.scss';
+
+
 export default function Root() {
     return (
         <div className="root">
@@ -25,15 +31,16 @@ export default function Root() {
             </nav>
 
 
+
+
             <nav className="left">
-                <Palette/>
+                {/*<Palette/>*/}
             </nav>
 
 
 
             <footer>
-
-
+                footer
             </footer>
 
 
