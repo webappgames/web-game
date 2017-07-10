@@ -15,7 +15,6 @@
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "flow-bin": "^0.48.0",
     "react-scripts": "0.9.5",
     "custom-react-scripts": "0.0.23"
   },
@@ -23,7 +22,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "flow": "flow"
+    "eject": "react-scripts eject"
   }
 }

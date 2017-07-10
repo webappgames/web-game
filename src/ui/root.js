@@ -3,10 +3,12 @@ import Heading from './heading';
 import Palette from './palette';
 
 
-import './style/root.scss';
+
+import  './style/root.scss';
 import './style/menu-top.scss';
 import './style/menu-left.scss';
-import './style/footer.scss';
+import './style/palette.scss';
+import './style/scene.scss';
 
 
 export default function Root() {

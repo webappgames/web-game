@@ -12,11 +12,13 @@ import updateScene from './scene/update-scene';
 import stateReducer from './state-reducers/index';
 import wrapReducer from './util-functions/wrap-reducer';
 import Root from './ui/root';
+import style from './ui/style/root.scss';
 
 
 let store;
 const root = document.getElementById("root");
 const canvas = document.getElementById("scene");
+//canvas.style = style;
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, ()=>store);
 engine.runRenderLoop(function () {
