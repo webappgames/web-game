@@ -5,8 +5,8 @@ import {
     createActionPaletteOptionAdd,
     createActionPaletteOptionDelete,
     createActionPaletteOptionSelect
-} from '../state-reducers/palette';
-import './style/palette.scss';
+} from '../redux-reducers/palette';
+//import '../style/palette.scss';
 
 
 const mapStateToProps = (state) => {
@@ -69,4 +69,4 @@ let Palette = ({palette, onOptionSelect,onOptionDelete,onOptionCreate}) => {
 
 Palette = connect(mapStateToProps, mapDispatchToProps)(Palette);
 
-export default Palette
+export {Palette}

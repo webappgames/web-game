@@ -22,4 +22,4 @@ let Heading = ({ blocksSize }) => {
 
 Heading = connect(mapStateToProps)(Heading);
 
-export default Heading
+export {Heading}

@@ -1,0 +1,19 @@
+
+*{
+   color: red;
+}
+
+.root{
+    z-index: 1;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+
+
+@import "scene";
+@import "menu-left";
+@import "menu-top";
+@import "palette";
+
+
+

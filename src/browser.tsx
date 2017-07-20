@@ -4,20 +4,21 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
-import createStateFromUri from './state/create-state-from-uri';
-import createTitleFromState from './state/create-title-from-state';
-import createUriFromState from './state/create-uri-from-state';
+import createStateFromUri from './state-uri/create-state-from-uri';
+import createTitleFromState from './state-uri/create-title-from-state';
+import createUriFromState from './state-uri/create-uri-from-state';
 import createScene from './scene/create-scene';
 import updateScene from './scene/update-scene';
-import stateReducer from './state-reducers/index';
-import wrapReducer from './util-functions/wrap-reducer';
-import Root from './ui/root';
-import style from './ui/style/root.scss';
+import stateReducer from './redux-reducers/index';
+import wrapReducer from './tools/wrap-reducer';
+import {Root} from './react-components/root';
+import './style/index.scss';
+
 
 
 let store;
 const root = document.getElementById("root");
-const canvas = document.getElementById("scene");
+const canvas = document.getElementById("scene") as HTMLCanvasElement;
 //canvas.style = style;
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, ()=>store);

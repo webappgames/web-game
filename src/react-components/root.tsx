@@ -1,20 +1,20 @@
 import * as React from "react";
-import Heading from './heading';
-import Palette from './palette';
+import {Heading} from './heading';
+import {Palette} from './palette';
+
+//import '../style/index.scss';
+//import '../style/index.scss';
+//import '../style/menu-top.scss';
+//import '../style/menu-left.scss';
+//import '../style/palette.scss';
+//import '../style/scene.scss';
 
 
-
-import  './style/root.scss';
-import './style/menu-top.scss';
-import './style/menu-left.scss';
-import './style/palette.scss';
-import './style/scene.scss';
-
-
-export default function Root() {
+export function Root() {
     return (
         <div className="root">
 
+            sddddd
 
             <nav className="top">
                 <div className="left">
@@ -48,4 +48,4 @@ export default function Root() {
 
         </div>
     )
-}
+};
