@@ -1,13 +1,13 @@
+import './style/palette.css';
 import * as React from "react";
 import {connect} from 'react-redux';
-import FontAwesome from 'react-fontawesome';
+import * as FontAwesome from 'react-fontawesome';
 import {
     createActionPaletteOptionAdd,
     createActionPaletteOptionDelete,
     createActionPaletteOptionSelect
 } from '../redux-reducers/palette';
-//import '../style/palette.scss';
-
+//import '../style/palette.css';
 
 const mapStateToProps = (state) => {
     return {

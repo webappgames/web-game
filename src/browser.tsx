@@ -1,4 +1,3 @@
-// @flow
 import * as BABYLON from 'babylonjs';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -12,14 +11,16 @@ import updateScene from './scene/update-scene';
 import stateReducer from './redux-reducers/index';
 import wrapReducer from './tools/wrap-reducer';
 import {Root} from './react-components/root';
-import './style/index.scss';
-
-
 
 let store;
 const root = document.getElementById("root");
 const canvas = document.getElementById("scene") as HTMLCanvasElement;
-//canvas.style = style;
+canvas.style.position='fixed';
+canvas.style.top='0';
+canvas.style.left='0';
+canvas.style.width='100vw';
+canvas.style.height='100vh';
+canvas.style.touchAction='none';
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, ()=>store);
 engine.runRenderLoop(function () {
@@ -44,7 +45,6 @@ function initializeStore() {
     });
     store.subscribe(render);
     render();
-
 
     ReactDOM.render(
         <Provider store={store}>

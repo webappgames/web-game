@@ -2,19 +2,16 @@ import * as React from "react";
 import {Heading} from './heading';
 import {Palette} from './palette';
 
-//import '../style/index.scss';
-//import '../style/index.scss';
-//import '../style/menu-top.scss';
-//import '../style/menu-left.scss';
-//import '../style/palette.scss';
-//import '../style/scene.scss';
+import './style/index.css';
+import './style/menu-left.css';
+import './style/menu-top.css';
+
 
 
 export function Root() {
     return (
         <div className="root">
 
-            sddddd
 
             <nav className="top">
                 <div className="left">
