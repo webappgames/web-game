@@ -1,13 +1,14 @@
 Vytvoř si vlastní webovou hru
 Vylepšování základní scény
-!Stav hry
-
-
-
+Stav hry
 Zpět a Vpřed
-Webpack
+
+
+TypeScript
 User Interface
 First person
+Dolaďování (Ground)
+
 
 Deploy
 
