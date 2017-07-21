@@ -1,4 +1,4 @@
-import * as React from "react";
+/*import * as React from "react";
 import {connect} from 'react-redux';
 import * as FontAwesome from 'react-fontawesome';
 import {
@@ -52,15 +52,7 @@ let Palette = ({palette, onOptionSelect,onOptionDelete,onOptionCreate}) => {
                     </li>
                 )}
 
-            {/*<li className="plus">
 
-                <FontAwesome name="plus"/>
-                <div className="options">
-                    <div className="arrow"></div>
-                    <input type="color" value={color} onChange={(event)=>color = event.target.color}/>
-                    <button onClick={()=>onOptionCreate(color)}><FontAwesome name="color"/>Add</button>
-                </div>
-            </li>*/}
         </ul>
     )
 };
@@ -68,4 +60,4 @@ let Palette = ({palette, onOptionSelect,onOptionDelete,onOptionCreate}) => {
 
 Palette = connect(mapStateToProps, mapDispatchToProps)(Palette);
 
-export {Palette}
+export {Palette}*/

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import {Heading} from './heading';
-import {Palette} from './palette';
+//import {Palette} from './palette';
 import {createActionUIDrawerToggle} from '../redux-reducers/ui';
 
 
@@ -50,6 +50,11 @@ export function Root({drawer,onMenu}){
             <Drawer style={{
                 zIndex: 5
             }} open={drawer}>
+
+
+                <MenuItem onTouchTap={onMenu} leftIcon={<FontAwesome name="times"/>}>Close</MenuItem>
+
+
 
                 <Subheader>Library</Subheader>
 
