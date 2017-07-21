@@ -1,4 +1,3 @@
-import './style/palette.css';
 import * as React from "react";
 import {connect} from 'react-redux';
 import * as FontAwesome from 'react-fontawesome';

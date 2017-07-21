@@ -1,3 +1,9 @@
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 import * as BABYLON from 'babylonjs';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -10,7 +16,7 @@ import createScene from './scene/create-scene';
 import updateScene from './scene/update-scene';
 import stateReducer from './redux-reducers/index';
 import wrapReducer from './tools/wrap-reducer';
-import {Root} from './react-components/root';
+import Root from './react-components/root';
 
 let store;
 const root = document.getElementById("root");
@@ -48,7 +54,9 @@ function initializeStore() {
 
     ReactDOM.render(
         <Provider store={store}>
-            <Root />
+            <MuiThemeProvider>
+                <Root />
+            </MuiThemeProvider>
         </Provider>,
         root
     )
