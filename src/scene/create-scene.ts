@@ -14,6 +14,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     camera.fov = 1.2;
     camera.attachControl(canvas, true);
     camera.upperBetaLimit = (Math.PI/2)*(9/10);
+    camera.lowerRadiusLimit = 5;
+    camera.upperRadiusLimit = 100;
 
 
     const light = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(-1, -2, -1), scene);
@@ -33,7 +35,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     materialGround.diffuseColor = new BABYLON.Color3(0.6, 0.9, 0.4);
     //materialGround.backFaceCulling = false;
 
-    const ground = BABYLON.Mesh.CreateGround("ground", 1000, 1000, 2, scene);
+    const ground = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
     ground.material = materialGround;
     ground.receiveShadows = true;
 
