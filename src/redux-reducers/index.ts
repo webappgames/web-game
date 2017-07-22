@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 import blocks from './blocks'
-//import palette from './palette'
+import {environment} from './environment'
+import {camera} from './camera'
 import {ui} from './ui'
 
 
 export default combineReducers({
     blocks,
-    //palette,
+    environment,
+    camera,
     ui
 })

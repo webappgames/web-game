@@ -1,32 +1,30 @@
-const defaultBlocks = [{id: 'My first block!!!', position: {x: 0, y: 0, z: 0}}];//todo createBlock
+import {Vector3} from '../classes/vector3';
+import {Block} from '../classes/block';
 
+const defaultBlocks = [
+    new Block(null,new Vector3(0,0,0))
+];
 
-const BLOCK_DELETE = 'BLOCK_DELETE';
-const BLOCK_ADD = 'BLOCK_ADD';
-
-
-export function createActionBlockDelete(blockId: string) {
-    return {
-        type: BLOCK_DELETE, blockId
-    }
-}
-export function createActionBlockAdd(newBlock: Object) {
-    return {
-        type: BLOCK_ADD, newBlock
-    }
+enum ActionTypes{
+    BLOCK_ADD,
+    BLOCK_DELETE,
 }
 
+export const createAction = {
+    BLOCK_ADD: (block:Block)=>({type:ActionTypes.BLOCK_DELETE,block}),
+    BLOCK_DELETE: (id:string)=>({type:ActionTypes.BLOCK_DELETE,id}),
+};
 
 
 export default function blocks(blocks = defaultBlocks, action) {
     switch (action.type) {
 
-        case BLOCK_ADD:
-            return blocks.concat([action.newBlock]);
+        case ActionTypes.BLOCK_ADD:
+            return blocks.concat([action.block]);
 
 
-        case BLOCK_DELETE:
-            return blocks.filter((block)=>block.id!==action.blockId);
+        case ActionTypes.BLOCK_DELETE:
+            return blocks.filter((block)=>block.id!==action.id);
 
         default:
             return blocks;
