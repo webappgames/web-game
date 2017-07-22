@@ -6,12 +6,12 @@ const defaultBlocks = [
 ];
 
 enum ActionTypes{
-    BLOCK_ADD,
-    BLOCK_DELETE,
+    BLOCK_ADD='BLOCK_ADD',
+    BLOCK_DELETE='BLOCK_DELETE',
 }
 
 export const createAction = {
-    BLOCK_ADD: (block:Block)=>({type:ActionTypes.BLOCK_DELETE,block}),
+    BLOCK_ADD: (block:Block)=>({type:ActionTypes.BLOCK_ADD,block}),
     BLOCK_DELETE: (id:string)=>({type:ActionTypes.BLOCK_DELETE,id}),
 };
 

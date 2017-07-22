@@ -3,7 +3,7 @@ const defaultEnvironment = {
 };
 
 enum ActionTypes{
-    ENVIRONMENT_GROUND_COLOR_SET,
+    ENVIRONMENT_GROUND_COLOR_SET='ENVIRONMENT_GROUND_COLOR_SET',
 }
 
 export const createAction = {

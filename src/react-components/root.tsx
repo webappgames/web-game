@@ -2,7 +2,7 @@ import * as React from "react";
 import {connect} from 'react-redux';
 import {Heading} from './heading';
 //import {Palette} from './palette';
-import {createActionUIDrawerToggle} from '../redux-reducers/ui';
+import {createAction} from '../redux-reducers/ui';
 
 
 import AppBar from 'material-ui/AppBar';
@@ -25,7 +25,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        onMenu: ()=>dispatch(createActionUIDrawerToggle()),
+        onMenu: ()=>dispatch(createAction.UI_DRAWER_TOGGLE()),
     }
 };
 

@@ -17,10 +17,10 @@ const defaultCamera = {
 };
 
 enum ActionTypes{
-    CAMERA_TYPE_SET,
-    CAMERA_FOV_SET,
-    CAMERA_ROTATION_SET,
-    CAMERA_RADIUS_SET,
+    CAMERA_TYPE_SET='CAMERA_TYPE_SET',
+    CAMERA_FOV_SET='CAMERA_FOV_SET',
+    CAMERA_ROTATION_SET='CAMERA_ROTATION_SET',
+    CAMERA_RADIUS_SET='CAMERA_RADIUS_SET',
 }
 
 export const createAction = {

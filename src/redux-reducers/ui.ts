@@ -4,8 +4,8 @@ const defaultUi = {
 }
 
 enum ActionTypes{
-    UI_DRAWER_TOGGLE,
-    UI_COLOR_SET,
+    UI_DRAWER_TOGGLE='UI_DRAWER_TOGGLE',
+    UI_COLOR_SET='UI_COLOR_SET',
 }
 
 export const createAction = {

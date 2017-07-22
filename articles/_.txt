@@ -4,6 +4,13 @@ Stav hry
 Zpět a Vpřed
 
 
+
+
+
+
+
+
+
 TypeScript
 User Interface
 First person
