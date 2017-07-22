@@ -18,20 +18,19 @@ import * as FontAwesome from 'react-fontawesome';
 
 
 function mapStateToProps(state){
-    return {
-        drawer: state.ui.drawer
-    }
+    return state.ui
 };
 
 function mapDispatchToProps(dispatch){
     return {
         onMenu: ()=>dispatch(createAction.UI_DRAWER_TOGGLE()),
+        setColor: (color)=>dispatch(createAction.UI_COLOR_SET(color)),
     }
 };
 
 
 
-export function Root({drawer,onMenu}){
+export function Root({drawer,color,onMenu,setColor}){
     return (
         <div className="root">
 
@@ -56,10 +55,18 @@ export function Root({drawer,onMenu}){
 
 
 
-                <Subheader>Library</Subheader>
+                <Subheader>Block color</Subheader>
 
-                <MenuItem style={{backgroundColor: '#ddd'}}
-                          leftIcon={<FontAwesome name="cube" style={{'color': 'red'}}/>}>Menu Item</MenuItem>
+                {['#ff0000','#cccccc','#fcf081'].map((currentColor)=>(
+                    <MenuItem
+                        key={currentColor}
+                        onTouchTap={()=>setColor(currentColor)}
+                        style={{backgroundColor:currentColor===color?'#ddd':'none'}}
+                        leftIcon={<FontAwesome name="cube" style={{'color':currentColor}}/>}>
+                        {currentColor}
+                    </MenuItem>
+
+                ))}
 
                 <Divider />
                 <Subheader>Actions</Subheader>
