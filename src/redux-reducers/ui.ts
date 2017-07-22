@@ -1,7 +1,7 @@
 const defaultUi = {
     drawer:false,
     color: '#cccccc',
-}
+};
 
 enum ActionTypes{
     UI_DRAWER_TOGGLE='UI_DRAWER_TOGGLE',
@@ -15,7 +15,7 @@ export const createAction = {
 
 export function ui(ui=defaultUi, action) {
     return {
-        drawer: action===ActionTypes.UI_DRAWER_TOGGLE?(!ui.drawer):ui.drawer,
-        color:  action===ActionTypes.UI_COLOR_SET?action.value:ui.color,
+        drawer: action.type===ActionTypes.UI_DRAWER_TOGGLE?(!ui.drawer):ui.drawer,
+        color:  action.type===ActionTypes.UI_COLOR_SET?action.value:ui.color,
     };
 }

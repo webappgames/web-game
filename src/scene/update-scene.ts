@@ -5,7 +5,6 @@ export default function updateScene(scene:BABYLON.Scene, state: Object):void {
     const shadowRenderList = [];
     scene.lights[0]._shadowGenerator.getShadowMap().renderList = shadowRenderList;
 
-
     let newMeshes = [];
     scene.meshes.forEach((mesh) => {
         if(mesh.name!=='ground'){
@@ -15,7 +14,6 @@ export default function updateScene(scene:BABYLON.Scene, state: Object):void {
         }
     });
     scene.meshes = newMeshes;
-
 
     const materialNormal = (scene.materials as any).find(material=>material.name==='material-normal');
 

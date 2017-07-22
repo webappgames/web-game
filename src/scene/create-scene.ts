@@ -67,7 +67,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
                     getStore().dispatch(
                         createAction.BLOCK_ADD(
                             new Block(
-                                null,
+                                undefined,
                                 new Vector3(
                                     Math.floor(position.x),
                                     Math.floor(position.y),

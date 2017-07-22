@@ -2,7 +2,7 @@ import {Vector3} from '../classes/vector3';
 import {Block} from '../classes/block';
 
 const defaultBlocks = [
-    new Block(null,new Vector3(0,0,0))
+    new Block(undefined,new Vector3(0,0,0))
 ];
 
 enum ActionTypes{

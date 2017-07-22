@@ -12,6 +12,6 @@ export const createAction = {
 
 export function environment(environment = defaultEnvironment, action) {
     return {
-        groundColor: action===ActionTypes.ENVIRONMENT_GROUND_COLOR_SET?action.value:environment.groundColor,
+        groundColor: action.type===ActionTypes.ENVIRONMENT_GROUND_COLOR_SET?action.value:environment.groundColor,
     }
 }

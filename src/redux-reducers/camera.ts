@@ -33,9 +33,9 @@ export const createAction = {
 
 export function camera(camera = defaultCamera, action) {
     return {
-        type:     action===ActionTypes.CAMERA_TYPE_SET?action.value:camera.type,
-        fov:      action===ActionTypes.CAMERA_FOV_SET?action.value:camera.fov,
-        rotation: action===ActionTypes.CAMERA_ROTATION_SET?action.value:camera.rotation,
-        radius:   action===ActionTypes.CAMERA_RADIUS_SET?action.value:camera.radius,
+        type:     action.type===ActionTypes.CAMERA_TYPE_SET?action.value:camera.type,
+        fov:      action.type===ActionTypes.CAMERA_FOV_SET?action.value:camera.fov,
+        rotation: action.type===ActionTypes.CAMERA_ROTATION_SET?action.value:camera.rotation,
+        radius:   action.type===ActionTypes.CAMERA_RADIUS_SET?action.value:camera.radius,
     };
 }
