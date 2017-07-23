@@ -1,10 +1,8 @@
 import * as React from "react";
 import {connect} from 'react-redux';
-import {Heading} from './heading';
-//import {Palette} from './palette';
+import UiColor from './ui-color';
+import Camera from './camera';
 import {createAction} from '../redux-reducers/ui';
-
-
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -18,21 +16,18 @@ import * as FontAwesome from 'react-fontawesome';
 
 
 function mapStateToProps(state){
-    return state.ui
+    return state.ui;
 };
 
 function mapDispatchToProps(dispatch){
     return {
         onMenu: ()=>dispatch(createAction.UI_DRAWER_TOGGLE()),
-        setColor: (color)=>dispatch(createAction.UI_COLOR_SET(color)),
     }
 };
 
-
-
-export function Root({drawer,color,onMenu,setColor}){
+export function Root({drawer,onMenu}){
     return (
-        <div className="root">
+        <div>
 
 
             <RaisedButton
@@ -53,53 +48,12 @@ export function Root({drawer,color,onMenu,setColor}){
 
                 <MenuItem onTouchTap={onMenu} leftIcon={<FontAwesome name="times"/>}>Close</MenuItem>
 
-
-
-                <Subheader>Block color</Subheader>
-
-                {['#ff0000','#cccccc','#fcf081'].map((currentColor)=>(
-                    <MenuItem
-                        key={currentColor}
-                        onTouchTap={()=>setColor(currentColor)}
-                        style={{backgroundColor:currentColor===color?'#ddd':'white'}}
-                        leftIcon={<FontAwesome name="cube" style={{'color':currentColor}}/>}>
-                        {currentColor}
-                    </MenuItem>
-
-                ))}
-
+                <Camera/>
                 <Divider />
-                <Subheader>Actions</Subheader>
+                <UiColor/>
+
 
             </Drawer>
-
-
-            <nav className="top">
-                <div className="left">
-
-                </div>
-                {/*<ul>
-                 <li>Menu 1</li>
-                 <li>Menu 2</li>
-                 <li>Menu 3</li>
-                 </ul>
-                 <div className="right">
-
-                 <button>Uložit</button>
-
-                 </div>*/}
-            </nav>
-
-
-            <nav className="left">
-                {/*<Palette/>*/}
-            </nav>
-
-
-            <footer>
-                footer
-            </footer>
-
 
         </div>
     )
