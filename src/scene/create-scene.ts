@@ -24,12 +24,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const light2 = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
     light2.intensity = 0.5;
 
-    const materialNormal = new BABYLON.StandardMaterial("material-normal", scene);
-    materialNormal.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);//Také bych mohl vyrobit barvu z hexadecimálního zápisu BABYLON.Color3.FromHexString("#666666");
-
     const materialHover = new BABYLON.StandardMaterial("material-hover", scene);
     materialHover.diffuseColor = new BABYLON.Color3(0.4, 1, 0.4);
-
 
     const materialGround = new BABYLON.StandardMaterial("material-ground", scene);
     materialGround.diffuseColor = new BABYLON.Color3(0.6, 0.9, 0.4);
@@ -43,6 +39,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
     //shadowGenerator.useExponentialShadowMap = true;
     //shadowGenerator.usePoissonSampling = true;
+
 
 
     function onPointerUp(event) {
@@ -72,7 +69,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
                                     Math.floor(position.x),
                                     Math.floor(position.y),
                                     Math.floor(position.z)
-                                )
+                                ),
+                                (getStore().getState() as any).ui.color
                             )
                         )
                     );
@@ -91,15 +89,17 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     }
 
     let lastMesh = null;
+    let lastMaterial:BABYLON.Material;
 
     function onPointerMove(event) {
         if (lastMesh) {
-            lastMesh.material = materialNormal;
+            lastMesh.material = lastMaterial;
         }
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
         if (pickInfo.hit) {
             const currentMesh = pickInfo.pickedMesh;
             if(currentMesh.name==='ground')return;
+            lastMaterial = currentMesh.material;
             currentMesh.material = materialHover;
             lastMesh = currentMesh;
         } else {

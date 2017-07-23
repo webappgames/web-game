@@ -61,7 +61,7 @@ export function Root({drawer,color,onMenu,setColor}){
                     <MenuItem
                         key={currentColor}
                         onTouchTap={()=>setColor(currentColor)}
-                        style={{backgroundColor:currentColor===color?'#ddd':'none'}}
+                        style={{backgroundColor:currentColor===color?'#ddd':'white'}}
                         leftIcon={<FontAwesome name="cube" style={{'color':currentColor}}/>}>
                         {currentColor}
                     </MenuItem>
