@@ -20,6 +20,7 @@ function mapStateToProps(state){
     }
 
     palette.push(state.ui.color);
+    palette.push(state.environment.groundColor);
 
     //todo unique
 

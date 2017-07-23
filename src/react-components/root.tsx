@@ -1,6 +1,7 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import UiColor from './ui-color';
+import Environment from './environment';
 import Camera from './camera';
 import {createAction} from '../redux-reducers/ui';
 import AppBar from 'material-ui/AppBar';
@@ -51,6 +52,7 @@ export function Root({drawer,onMenu}){
                 <Camera/>
                 <Divider />
                 <UiColor/>
+                <Environment/>
 
 
             </Drawer>
