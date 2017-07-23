@@ -12,20 +12,23 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
     return {
-        setColor: (color)=>dispatch(createAction.ENVIRONMENT_GROUND_COLOR_SET(color)),
+        setGroundColor: (color)=>dispatch(createAction.ENVIRONMENT_GROUND_COLOR_SET(color)),
+        setSkyColor: (color)=>dispatch(createAction.ENVIRONMENT_SKY_COLOR_SET(color)),
     }
 };
 
 
 
-export function Environment({groundColor,setColor}) {
+export function Environment({groundColor,skyColor,setGroundColor,setSkyColor}) {
     return (
         <div>
             <Subheader>Ground color</Subheader>
-
-
             <MenuItem>
-                <ColorPicker value={groundColor} onChange={setColor}/>
+                <ColorPicker value={groundColor} onChange={setGroundColor}/>
+            </MenuItem>
+            <Subheader>Sky color</Subheader>
+            <MenuItem>
+                <ColorPicker value={skyColor} onChange={setSkyColor}/>
             </MenuItem>
         </div>
     )
