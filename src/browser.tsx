@@ -3,7 +3,7 @@ import * as injectTapEventPlugin from 'react-tap-event-plugin';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import * as _ from "lodash";
 import * as BABYLON from 'babylonjs';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -42,13 +42,13 @@ function render() {
 
 function initializeStore() {
     store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
-    store.subscribe(()=> {
+    store.subscribe(_.debounce(()=> {
         const state = store.getState();
         const uri = createUriFromState(state);
         const title = createTitleFromState(state);
         document.title = title;
         history.pushState({}, title, uri);
-    });
+    },1000));
     store.subscribe(render);
     render();
 

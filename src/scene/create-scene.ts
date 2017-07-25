@@ -1,6 +1,8 @@
 import * as BABYLON from 'babylonjs';
+import * as _ from "lodash";
 import {Store, Action} from 'redux';
 import {createAction} from '../redux-reducers/blocks';
+import {createAction as createActionCamera} from '../redux-reducers/camera';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 
@@ -41,13 +43,38 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     //shadowGenerator.usePoissonSampling = true;
 
 
+    //todo throttle, listen to rotation changes
+    let lastRotation:Vector3;
+    scene.registerBeforeRender(_.debounce(()=>{
+
+        console.log(scene.activeCamera);
+
+        /*const thisRotation = new Vector3(
+            scene.activeCamera.alpha,
+            scene.activeCamera.beta,
+            scene.activeCamera.gamma,
+        );
+        if(thisRotation!==lastRotation){
+            getStore().dispatch(createActionCamera.CAMERA_ROTATION_SET(thisRotation));
+            lastRotation = this.rotation;
+        }/**/
+    },500));
+
+
+
+    let pointUnderPointer:Vector3 = null;
+    function onPointerDown(event){
+        pointUnderPointer = new Vector3(event.clientX,event.clientY,0);
+    }
+
 
     function onPointerUp(event) {
+        if(Vector3.distance(pointUnderPointer,new Vector3(event.clientX,event.clientY,0))>20)return;
+
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
         if (pickInfo.hit) {
             const currentMesh = pickInfo.pickedMesh;
             if(currentMesh.name==='ground')return;
-
             switch (event.button) {
                 case 0:
                     const diff = currentMesh.position.subtract(pickInfo.pickedPoint);
@@ -109,11 +136,13 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     }
 
 
+    canvas.addEventListener("pointerdown", onPointerDown, false);
     canvas.addEventListener("pointerup", onPointerUp, false);
     canvas.addEventListener("contextmenu", onContextMenu, false);
     canvas.addEventListener("pointermove", onPointerMove, false);
 
     scene.onDispose = function () {
+        canvas.removeEventListener("pointerdown", onPointerDown);
         canvas.removeEventListener("pointerup", onPointerUp);
         canvas.removeEventListener("contextmenu", onContextMenu);
         canvas.removeEventListener("pointermove", onPointerMove);

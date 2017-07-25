@@ -2,7 +2,10 @@ import * as BABYLON from 'babylonjs';
 
 let materials = {};
 
-export default function updateScene(scene:BABYLON.Scene, state: Object):void {
+export default function updateScene(scene:BABYLON.Scene, state):void {
+
+    scene.activeCamera.fov = state.camera.fov;
+
 
     const shadowRenderList = [];
     scene.lights[0]._shadowGenerator.getShadowMap().renderList = shadowRenderList;
@@ -18,7 +21,6 @@ export default function updateScene(scene:BABYLON.Scene, state: Object):void {
     scene.meshes = newMeshes;
 
     //const materialNormal = (scene.materials as any).find(material=>material.name==='material-normal');
-
 
 
     (state as any).blocks.forEach(block=>{
