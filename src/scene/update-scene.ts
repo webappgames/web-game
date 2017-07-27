@@ -33,7 +33,7 @@ export default function updateScene(scene:BABYLON.Scene, state):void {
 
         const newBox = BABYLON.Mesh.CreateBox(block.id, 1, scene);
         newBox.material = createMaterial(block.color,scene);
-        newBox.position = new BABYLON.Vector3(block.position.x, block.position.y+0.5, block.position.z);
+        newBox.position = new BABYLON.Vector3(block.position.x, block.position.y, block.position.z);
         shadowRenderList.push(newBox);
     });
 

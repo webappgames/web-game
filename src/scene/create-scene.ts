@@ -29,8 +29,9 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const materialHover = createMaterial('#2eff29',scene);
 
     const groundMesh = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
+    groundMesh.position.y = -0.5;
     groundMesh.receiveShadows = true;
-``
+
     const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
     //shadowGenerator.useExponentialShadowMap = true;
     //shadowGenerator.usePoissonSampling = true;
@@ -67,37 +68,42 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
         if (pickInfo.hit) {
             const currentMesh = pickInfo.pickedMesh;
-            if(currentMesh.name==='ground')return;
             switch (event.button) {
                 case 0:
-                    const diff = currentMesh.position.subtract(pickInfo.pickedPoint);
-                    const position = currentMesh.position.clone();
+                    let position:Vector3;
 
-                    ['x', 'y', 'z'].forEach((dimension) => {
-                        if (diff[dimension] >= 0.5 - 0.001) {
-                            position[dimension]--;
-                        } else if (diff[dimension] <= -0.5 + 0.001) {
-                            position[dimension]++;
-                        }
-                    });
+
+                    if(currentMesh.name==='ground'){
+                        position = new Vector3(
+                            Math.round(pickInfo.pickedPoint.x),
+                            0,
+                            Math.round(pickInfo.pickedPoint.z)
+                        );
+                    }else{
+                        const diff = currentMesh.position.subtract(pickInfo.pickedPoint);
+                        position = currentMesh.position.clone();
+
+                        ['x', 'y', 'z'].forEach((dimension) => {
+                            if (diff[dimension] >= 0.5 - 0.001) {
+                                position[dimension]--;
+                            } else if (diff[dimension] <= -0.5 + 0.001) {
+                                position[dimension]++;
+                            }
+                        });
+                    }
+
+                    console.log(position);
 
                     getStore().dispatch(
                         createAction.BLOCK_ADD(
-                            new Block(
-                                undefined,
-                                new Vector3(
-                                    Math.floor(position.x),
-                                    Math.floor(position.y),
-                                    Math.floor(position.z)
-                                ),
-                                (getStore().getState() as any).ui.color
-                            )
+                            new Block(undefined,position,(getStore().getState() as any).ui.color)
                         )
                     );
 
                     break;
 
                 case 2:
+                    if(currentMesh.name==='ground')return;
                     getStore().dispatch(createAction.BLOCK_DELETE(currentMesh.name));
                     break;
             }
