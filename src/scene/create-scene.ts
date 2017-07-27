@@ -2,7 +2,7 @@ import * as BABYLON from 'babylonjs';
 import * as _ from "lodash";
 import {Store, Action} from 'redux';
 import {createAction} from '../redux-reducers/blocks';
-import {createAction as createActionCamera} from '../redux-reducers/camera';
+import {createAction as createActionCamera, CameraModes, camera} from '../redux-reducers/camera';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
@@ -55,14 +55,16 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     },500));
 
 
-
+    let pointerDown:boolean;
     let pointUnderPointer:Vector3 = null;
     function onPointerDown(event){
+        pointerDown = true;
         pointUnderPointer = new Vector3(event.clientX,event.clientY,0);
     }
 
 
     function onPointerUp(event) {
+        pointerDown = false;
         if(Vector3.distance(pointUnderPointer,new Vector3(event.clientX,event.clientY,0))>20)return;
 
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
@@ -118,6 +120,12 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     let lastMaterial:BABYLON.Material;
 
     function onPointerMove(event) {
+
+        if(pointerDown){
+            onPointerDrag(event);
+            return;
+        }
+
         if (lastMesh) {
             lastMesh.material = lastMaterial;
         }
@@ -130,6 +138,16 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
             lastMesh = currentMesh;
         } else {
             lastMesh = null;
+        }
+
+    }
+
+
+    function onPointerDrag(event){
+        if((getStore().getState() as any).camera.mode === CameraModes.MOVE){
+
+            camera.target.x+=0.01;
+
         }
 
     }
