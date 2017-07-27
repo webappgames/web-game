@@ -22,7 +22,7 @@ function mapStateToProps(state){
     palette.push(state.ui.color);
     palette.push(state.environment.groundColor);
 
-    //todo unique
+    palette = palette.filter((v, i, a) => a.indexOf(v) === i);
 
     return {
         palette

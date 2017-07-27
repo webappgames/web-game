@@ -1,5 +1,6 @@
 import * as React from "react";
 import {connect} from 'react-redux';
+import * as _ from "lodash";
 import {createAction,CameraModes} from '../redux-reducers/camera';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
@@ -14,7 +15,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return {
         setCameraMode: (cameraMode:CameraModes)=>dispatch(createAction.CAMERA_MODE_SET(cameraMode)),
-        setFov: (fov:number)=>dispatch(createAction.CAMERA_FOV_SET(fov)),
+        setFov: (event:any,fov:number)=>dispatch(createAction.CAMERA_FOV_SET(fov)),
     }
 };
 
@@ -72,7 +73,7 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
                     max={2}
                     step={0.001}
                     value={fov}
-                    onChange={setFov}
+                    onChange={_.debounce(setFov,500)}
                 />
             </MenuItem>
 

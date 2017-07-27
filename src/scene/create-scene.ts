@@ -5,12 +5,12 @@ import {createAction} from '../redux-reducers/blocks';
 import {createAction as createActionCamera} from '../redux-reducers/camera';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
-
+import {createMaterial} from './create-material';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Object>): BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
+    //scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 
     const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;
@@ -26,18 +26,11 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const light2 = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
     light2.intensity = 0.5;
 
-    const materialHover = new BABYLON.StandardMaterial("material-hover", scene);
-    materialHover.diffuseColor = new BABYLON.Color3(0.4, 1, 0.4);
+    const materialHover = createMaterial('#2eff29',scene);
 
-    const materialGround = new BABYLON.StandardMaterial("material-ground", scene);
-    materialGround.diffuseColor = new BABYLON.Color3(0.6, 0.9, 0.4);
-    //materialGround.backFaceCulling = false;
-
-    const ground = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
-    ground.material = materialGround;
-    ground.receiveShadows = true;
-
-
+    const groundMesh = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
+    groundMesh.receiveShadows = true;
+``
     const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
     //shadowGenerator.useExponentialShadowMap = true;
     //shadowGenerator.usePoissonSampling = true;
