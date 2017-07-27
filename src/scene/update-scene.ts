@@ -7,8 +7,7 @@ export default function updateScene(scene:BABYLON.Scene, state):void {
     //console.log(BABYLON.Color4.FromHexString(state.envirnment.skyColor));
 
     scene.activeCamera.fov = state.camera.fov;
-    scene.clearColor = BABYLON.Color4.FromHexString(state.environment.skyColor);
-
+    scene.clearColor = BABYLON.Color4.FromHexString(state.environment.skyColor+'ff');
 
     const shadowRenderList = [];
     scene.lights[0]._shadowGenerator.getShadowMap().renderList = shadowRenderList;
