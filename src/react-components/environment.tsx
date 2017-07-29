@@ -18,17 +18,27 @@ function mapDispatchToProps(dispatch){
 };
 
 
+//todo config
+const PALETTE_GROUND = [
+    '#3dff55',
+    '#ccff7c',
+];
+const PALETTE_SKY = [
+    '#55fff0',
+    '#eafeff',
+];
+
 
 export function Environment({groundColor,skyColor,setGroundColor,setSkyColor}) {
     return (
         <div>
             <Subheader>Ground color</Subheader>
             <MenuItem>
-                <ColorPicker value={groundColor} onChange={setGroundColor}/>
+                <ColorPicker value={groundColor} onChange={setGroundColor} palette={PALETTE_GROUND}/>
             </MenuItem>
             <Subheader>Sky color</Subheader>
             <MenuItem>
-                <ColorPicker value={skyColor} onChange={setSkyColor}/>
+                <ColorPicker value={skyColor} onChange={setSkyColor} palette={PALETTE_SKY}/>
             </MenuItem>
         </div>
     )

@@ -49,20 +49,14 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
             <MenuItem
                 onTouchTap={() => setCameraMode(CameraModes.ROTATE)}
                 style={{backgroundColor: CameraModes.ROTATE === mode ? '#ddd' : 'white'}}
-                leftIcon={<FontAwesome name="cube"/>}>
+                leftIcon={<FontAwesome name="repeat"/>}>
                 Rotate
             </MenuItem>
             <MenuItem
                 onTouchTap={() => setCameraMode(CameraModes.MOVE)}
                 style={{backgroundColor: CameraModes.MOVE === mode ? '#ddd' : 'white'}}
-                leftIcon={<FontAwesome name="cube"/>}>
+                leftIcon={<FontAwesome name="arrows"/>}>
                 Move
-            </MenuItem>
-            <MenuItem
-                onTouchTap={() => setCameraMode(CameraModes.FPS)}
-                style={{backgroundColor: CameraModes.FPS === mode ? '#ddd' : 'white'}}
-                leftIcon={<FontAwesome name="cube"/>}>
-                Fps
             </MenuItem>
 
             <Subheader>Camera FOV</Subheader>

@@ -22,15 +22,20 @@ function mapStateToProps(state){
     palette.push(state.ui.color);
     palette.push(state.environment.groundColor);
 
-    palette = palette.filter((v, i, a) => a.indexOf(v) === i);
-
     return {
-        palette
+        paletteGlobal:palette
     }
 };
 
 
-function ColorPicker({value,palette,onChange}) {
+function ColorPicker({value,paletteGlobal,palette,onChange}) {
+
+    const paletteLocal = palette;
+    palette = [].concat(paletteLocal,paletteGlobal);
+
+    palette = palette.filter((v, i, a) => a.indexOf(v) === i);
+
+
 
     return (
         <div>

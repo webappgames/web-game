@@ -19,6 +19,13 @@ function mapDispatchToProps(dispatch){
 };
 
 
+const PALETTE_BLOCK=[
+    '#ffa58a',
+    '#ffdc43',
+    '#777777',
+    '#ffffff',
+];
+
 
 export function UiColor({color,setColor}) {
     return (
@@ -27,7 +34,7 @@ export function UiColor({color,setColor}) {
 
 
             <MenuItem>
-                <ColorPicker value={color} onChange={setColor}/>
+                <ColorPicker value={color} onChange={setColor} palette={PALETTE_BLOCK}/>
             </MenuItem>
         </div>
     )
