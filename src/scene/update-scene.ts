@@ -1,13 +1,31 @@
 import * as BABYLON from 'babylonjs';
 import {createMaterial} from './create-material';
+import {CameraModes} from '../redux-reducers/camera';
 
 export default function updateScene(scene:BABYLON.Scene, state):void {
 
 
     //console.log(BABYLON.Color4.FromHexString(state.envirnment.skyColor));
 
-    scene.activeCamera.fov = state.camera.fov;
+    const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
+    const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
+    camera.detachControl(canvas);
+
+    if(state.camera.mode === CameraModes.MOVE){
+        camera.attachControl(canvas, true, false, 0);
+    }else
+    if(state.camera.mode === CameraModes.ROTATE){
+        camera.attachControl(canvas, true, false, 2);
+    }
+
+
+
+
+
+    camera.fov = state.camera.fov;
     scene.clearColor = BABYLON.Color4.FromHexString(state.environment.skyColor+'ff');
+
+
 
     const shadowRenderList = [];
     scene.lights[0]._shadowGenerator.getShadowMap().renderList = shadowRenderList;

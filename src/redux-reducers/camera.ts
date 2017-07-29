@@ -2,8 +2,7 @@ import {Vector3} from '../classes/vector3';
 
 export enum CameraModes{
     ROTATE,
-    MOVE,
-    FPS,
+    MOVE
 }
 
 const defaultCamera = {

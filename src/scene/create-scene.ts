@@ -14,7 +14,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
     const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;
-    camera.attachControl(canvas, true);
+    camera.panningAxis = new BABYLON.Vector3(1,0,1);
     camera.upperBetaLimit = (Math.PI/2)*(9/10);
     camera.lowerRadiusLimit = 5;
     camera.upperRadiusLimit = 100;
