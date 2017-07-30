@@ -4,7 +4,6 @@ import * as _ from "lodash";
 import {createAction,CameraModes} from '../redux-reducers/camera';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
-import SelectField from 'material-ui/SelectField';
 import Slider from 'material-ui/Slider';
 import * as FontAwesome from 'react-fontawesome';
 
@@ -63,8 +62,8 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
 
             <MenuItem>
                 <Slider
-                    min={0.2}
-                    max={2}
+                    min={0.1}
+                    max={3}
                     step={0.001}
                     value={fov}
                     onChange={_.debounce(setFov,500)}

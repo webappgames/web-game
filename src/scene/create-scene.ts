@@ -37,7 +37,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     //shadowGenerator.usePoissonSampling = true;
 
 
-    //todo throttle, listen to rotation changes
+    //todo listen to rotation changes
     let lastRotation:Vector3;
     scene.registerBeforeRender(_.debounce(()=>{
 

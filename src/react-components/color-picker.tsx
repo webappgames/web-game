@@ -1,19 +1,11 @@
 import * as React from "react";
 import {connect} from 'react-redux';
 import Paper from 'material-ui/Paper';
-
-
-//todo to config
-const interestingColors = [
-    '#ffffff',
-    '#000000',
-    '#74ffaa',
-    '#ffb075',
-];
+import {PALETTE_COMMON} from '../config';
 
 function mapStateToProps(state){
 
-    let palette = [].concat(interestingColors);
+    let palette = [].concat(PALETTE_COMMON);
 
     for(let block of state.blocks){
         palette.push(block.color);
@@ -38,7 +30,11 @@ function ColorPicker({value,paletteGlobal,palette,onChange}) {
 
 
     return (
-        <div>
+        <div style={{
+            //width: 100,
+            //backgroundColor: '#ff0000',
+            whiteSpace: 'normal'
+        }}>
 
 
             {palette.map((currentColor) => (

@@ -4,7 +4,7 @@ import {createAction} from '../redux-reducers/environment';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import ColorPicker from './color-picker';
-
+import {PALETTE_GROUND,PALETTE_SKY} from '../config';
 
 function mapStateToProps(state){
     return state.environment;
@@ -18,15 +18,6 @@ function mapDispatchToProps(dispatch){
 };
 
 
-//todo config
-const PALETTE_GROUND = [
-    '#3dff55',
-    '#ccff7c',
-];
-const PALETTE_SKY = [
-    '#55fff0',
-    '#eafeff',
-];
 
 
 export function Environment({groundColor,skyColor,setGroundColor,setSkyColor}) {
