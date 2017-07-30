@@ -1,6 +1,9 @@
+import {COLOR_GROUND,COLOR_SKY} from '../config';
+
+
 const defaultEnvironment = {
-    groundColor: '#74ffaa',
-    skyColor: '#c0faff',
+    groundColor: COLOR_GROUND,
+    skyColor: COLOR_SKY,
 };
 
 enum ActionTypes{

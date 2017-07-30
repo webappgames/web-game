@@ -1,7 +1,16 @@
+import {Vector3} from './classes/vector3';
+import {Block} from './classes/block';
+
 export const WEB_NAME = 'Simple web game';
 export const TITLE_SEPARATOR = ' | ';
 
+export const BLOCKS_DEFAULT = [
+    new Block(undefined,new Vector3(0,0,0),'#cccccc')
+];
 
+export const COLOR_HOVER = '#2eff29';
+export const COLOR_GROUND = '#74ffaa'
+export const COLOR_SKY = '#c0faff';
 
 export const PALETTE_COMMON = [
     '#ffffff',
@@ -11,10 +20,12 @@ export const PALETTE_COMMON = [
 ];
 
 export const PALETTE_GROUND = [
+    COLOR_GROUND,
     '#3dff55',
     '#ccff7c',
 ];
 export const PALETTE_SKY = [
+    COLOR_SKY,
     '#55fff0',
     '#eafeff',
 ];

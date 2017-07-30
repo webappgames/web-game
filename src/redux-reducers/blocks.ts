@@ -1,9 +1,7 @@
 import {Vector3} from '../classes/vector3';
 import {Block} from '../classes/block';
+import {BLOCKS_DEFAULT} from '../config';
 
-const defaultBlocks = [
-    new Block(undefined,new Vector3(0,0,0),'#cccccc')
-];
 
 enum ActionTypes{
     BLOCK_ADD='BLOCK_ADD',
@@ -16,7 +14,7 @@ export const createAction = {
 };
 
 
-export default function blocks(blocks = defaultBlocks, action) {
+export default function blocks(blocks = BLOCKS_DEFAULT, action) {
     switch (action.type) {
 
         case ActionTypes.BLOCK_ADD:

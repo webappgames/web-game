@@ -6,6 +6,7 @@ import {createAction as createActionCamera, CameraModes, camera} from '../redux-
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
+import {COLOR_HOVER} from '../config';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
@@ -26,7 +27,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const light2 = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
     light2.intensity = 0.5;
 
-    const materialHover = createMaterial('#2eff29',scene);
+    const materialHover = createMaterial(COLOR_HOVER,scene);
 
     const groundMesh = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
     groundMesh.position.y = -0.5;
