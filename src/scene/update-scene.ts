@@ -5,7 +5,6 @@ import {CameraModes} from '../redux-reducers/camera';
 export default function updateScene(scene:BABYLON.Scene, state):void {
 
 
-    //console.log(BABYLON.Color4.FromHexString(state.envirnment.skyColor));
 
     const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
@@ -42,7 +41,6 @@ export default function updateScene(scene:BABYLON.Scene, state):void {
     });
     scene.meshes = newMeshes;
 
-    //const materialNormal = (scene.materials as any).find(material=>material.name==='material-normal');
 
     groundMesh.material = createMaterial(state.environment.groundColor,scene);
 

@@ -13,7 +13,9 @@ Zpět a Vpřed
 
 TypeScript
 User Interface
-First person
+
+
+
 Dolaďování (Ground)
 
 

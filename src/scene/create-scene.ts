@@ -8,7 +8,7 @@ import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
 
 
-export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, getStore: ()=>Store<Object>): BABYLON.Scene {
+export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
     //scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 
@@ -32,8 +32,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     groundMesh.position.y = -0.5;
     groundMesh.receiveShadows = true;
 
-    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-    //shadowGenerator.useExponentialShadowMap = true;
+    const shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
+    shadowGenerator.useExponentialShadowMap = true;
     //shadowGenerator.usePoissonSampling = true;
 
 
@@ -94,11 +94,9 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
                         });
                     }
 
-                    console.log(position);
-
-                    getStore().dispatch(
+                    store.dispatch(
                         createAction.BLOCK_ADD(
-                            new Block(undefined,position,(getStore().getState() as any).ui.color)
+                            new Block(undefined,position,(store.getState() as any).ui.color)
                         )
                     );
 
@@ -106,7 +104,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
                 case 2:
                     if(currentMesh.name==='ground')return;
-                    getStore().dispatch(createAction.BLOCK_DELETE(currentMesh.name));
+                    store.dispatch(createAction.BLOCK_DELETE(currentMesh.name));
                     break;
             }
         }
@@ -144,7 +142,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
 
     function onPointerDrag(event){
-        if((getStore().getState() as any).camera.mode === CameraModes.MOVE){
+        if((store.getState() as any).camera.mode === CameraModes.MOVE){
 
             camera.target.x+=0.01;
 

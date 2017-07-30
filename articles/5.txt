@@ -1,5 +1,25 @@
-V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval, **********.
-V tomto díle ukáži, ***********.
+V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval, co můžu díky stavu hry docílit.
+V tomto díle ukáži, jak spojím jednotlivé soubory do jednoho kompaktního celku.
+
+
+##
+Zatím jsem všechny javascriptové soubory přidával přímo do html pomocí tagu <script>. To co jsem naprogramoval šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má např. i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru). JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích, operačních systémech,... proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho ˇˇˇˇnové výhody.
+
+
+
+******ITNetwork článek
+
+
+
+
+ ##WebPack
+
+
+ ##TypeScript
+
+
+ ##Create project
+
 
 
 

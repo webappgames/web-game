@@ -1,0 +1,19 @@
+V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval, **********.
+V tomto díle ukáži, jak vyrobím user interface pomocí Reactu a Material UI designu.
+
+
+##React
+##React-Redux
+
+
+##Material UI design
+
+##Re
+
+
+
+
+
+
+
+Teď máme ********. Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game a pod tagem **0.******.0** najdeš, co jsme v tomto díle napsali. V dalším díle ukáži, ************.
