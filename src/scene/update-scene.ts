@@ -18,7 +18,10 @@ export default function updateScene(scene:BABYLON.Scene, state):void {
     }
 
 
-
+    camera.setTarget(new BABYLON.Vector3(state.camera.target.x,state.camera.target.y,state.camera.target.z));
+    camera.alpha = state.camera.rotation.alpha;
+    camera.beta = state.camera.rotation.beta;
+    camera.radius = state.camera.radius;
 
 
     camera.fov = state.camera.fov;

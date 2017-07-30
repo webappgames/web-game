@@ -1,12 +1,8 @@
-/*export enum MouseMode{
-    ROTATING,
-    MOVING,
-}*/
+import {BLOCKS_DEFAULT} from '../config';
 
 const defaultUi = {
     drawer:false,
-    //mouseMode: MouseMode.ROTATING,
-    color: '#cccccc',
+    color: BLOCKS_DEFAULT[0].color,
 };
 
 enum ActionTypes{

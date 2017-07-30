@@ -13,7 +13,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     const scene = new BABYLON.Scene(engine);
     //scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 
-    const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
+    const camera = new BABYLON.ArcRotateCamera("Camera", 0, 0, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;
     camera.panningAxis = new BABYLON.Vector3(1,0,1);
     camera.upperBetaLimit = (Math.PI/2)*(9/10);
@@ -35,25 +35,33 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
     const shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
     shadowGenerator.useExponentialShadowMap = true;
-    //shadowGenerator.usePoissonSampling = true;
 
+    //--------------------
+    let lastCamera;
+    const dispatchCameraChanges = _.debounce(()=> {
+        store.dispatch(createActionCamera.CAMERA_CHANGE(lastCamera.position,lastCamera.rotation,lastCamera.radius));
+    },500);
+    scene.registerBeforeRender(()=>{
 
-    //todo listen to rotation changes
-    let lastRotation:Vector3;
-    scene.registerBeforeRender(_.debounce(()=>{
+        const thisCamera = {
+            position: new Vector3(
+                camera.target.x,
+                camera.target.y,
+                camera.target.z
+            ),
+            rotation: {
+                alpha: camera.alpha,
+                beta: camera.beta,
+            },
+            radius: camera.radius
+        };
 
-        console.log(scene.activeCamera);
-
-        /*const thisRotation = new Vector3(
-            scene.activeCamera.alpha,
-            scene.activeCamera.beta,
-            scene.activeCamera.gamma,
-        );
-        if(thisRotation!==lastRotation){
-            getStore().dispatch(createActionCamera.CAMERA_ROTATION_SET(thisRotation));
-            lastRotation = this.rotation;
-        }/**/
-    },500));
+        if(!_.isEqual(thisCamera,lastCamera)){
+            lastCamera = thisCamera;
+            dispatchCameraChanges();
+        }
+    });
+    //--------------------
 
 
     let pointerDown:boolean;

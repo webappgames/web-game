@@ -4,6 +4,12 @@ import {Block} from './classes/block';
 export const WEB_NAME = 'Simple web game';
 export const TITLE_SEPARATOR = ' | ';
 
+export const DEFAULT_CAMERA_FOV = 1.3;
+export const DEFAULT_CAMERA_RADIUS = 10;
+export const DEFAULT_CAMERA_ROTATION_ALPHA = Math.PI / 4;
+export const DEFAULT_CAMERA_ROTATION_BETA = Math.PI / 4;
+export const DEFAULT_CAMERA_TARGET = new Vector3(0,0,0);
+
 export const BLOCKS_DEFAULT = [
     new Block(undefined,new Vector3(0,0,0),'#cccccc')
 ];
