@@ -15,6 +15,7 @@ import updateScene from './scene/update-scene';
 import {stateReducer,createAction,ActionTypes} from './redux-reducers/index';
 import wrapReducer from './tools/wrap-reducer';
 import Root from './react-components/root';
+import {DEBOUNCE_STATE_TO_URI} from './config';
 
 const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
 const root = document.getElementById("root");
@@ -43,7 +44,7 @@ store.subscribe(_.debounce(()=> {
     const title = createTitleFromState(state);
     document.title = title;
     history.pushState({}, title, uri);
-},1000));
+},DEBOUNCE_STATE_TO_URI));
 store.subscribe(render);
 render();
 ReactDOM.render(

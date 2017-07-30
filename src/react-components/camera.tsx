@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import Slider from 'material-ui/Slider';
 import * as FontAwesome from 'react-fontawesome';
+import {DEBOUNCE_SLIDER} from '../config';
 
 function mapStateToProps(state){
     return state.camera
@@ -66,7 +67,7 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
                     max={3}
                     step={0.001}
                     value={fov}
-                    onChange={_.debounce(setFov,500)}
+                    onChange={_.debounce(setFov,DEBOUNCE_SLIDER)}
                 />
             </MenuItem>
 

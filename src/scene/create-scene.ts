@@ -6,7 +6,7 @@ import {createAction as createActionCamera, CameraModes, camera} from '../redux-
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
-import {COLOR_HOVER} from '../config';
+import {COLOR_HOVER,DEBOUNCE_CAMERA} from '../config';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
@@ -40,7 +40,7 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     let lastCamera;
     const dispatchCameraChanges = _.debounce(()=> {
         store.dispatch(createActionCamera.CAMERA_CHANGE(lastCamera.position,lastCamera.rotation,lastCamera.radius));
-    },500);
+    },DEBOUNCE_CAMERA);
     scene.registerBeforeRender(()=>{
 
         const thisCamera = {
