@@ -1,14 +1,20 @@
 import { combineReducers } from 'redux'
+import * as _ from "lodash";
 import blocks from './blocks'
 import {environment} from './environment'
 import {camera} from './camera'
 import {ui} from './ui'
 
+function lastAction(previousAction,action){
+    return action;
+}
+
 const stateReducerInner = combineReducers({
     blocks,
     environment,
     camera,
-    ui
+    ui,
+    lastAction
 });
 
 export enum ActionTypes{
@@ -21,7 +27,7 @@ export const createAction = {
 
 export function stateReducer(state, action) {
     if (action.type === ActionTypes.CHANGE_STATE) {
-        return action.state;
+        return _.assign({},action.state, {lastAction:action});
     } else {
         return stateReducerInner(state, action);
     }

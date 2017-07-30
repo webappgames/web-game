@@ -39,11 +39,13 @@ function render() {
     updateScene(scene, store.getState());
 }
 store.subscribe(_.debounce(()=> {
-    const state = store.getState();
-    const uri = createUriFromState(state);
-    const title = createTitleFromState(state);
-    document.title = title;
-    history.pushState({}, title, uri);
+    const state = store.getState() as any;
+    if(state.lastAction.type!==ActionTypes.CHANGE_STATE){
+        const uri = createUriFromState(state);
+        const title = createTitleFromState(state);
+        document.title = title;
+        history.pushState({}, title, uri);
+    }
 },DEBOUNCE_STATE_TO_URI));
 store.subscribe(render);
 render();

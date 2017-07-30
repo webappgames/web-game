@@ -6,7 +6,7 @@ import {createAction as createActionCamera, CameraModes, camera} from '../redux-
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
-import {COLOR_HOVER,DEBOUNCE_CAMERA} from '../config';
+import {COLOR_HOVER} from '../config';
 
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
@@ -38,12 +38,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
     //--------------------
     let lastCamera;
-    const dispatchCameraChanges = _.debounce(()=> {
-        store.dispatch(createActionCamera.CAMERA_CHANGE(lastCamera.position,lastCamera.rotation,lastCamera.radius));
-    },DEBOUNCE_CAMERA);
-    scene.registerBeforeRender(()=>{
-
-        const thisCamera = {
+    function dumpCamera(){
+        return {
             position: new Vector3(
                 camera.target.x,
                 camera.target.y,
@@ -55,12 +51,16 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
             },
             radius: camera.radius
         };
-
+    };
+    canvas.addEventListener("pointerdown",()=>{
+        lastCamera = dumpCamera();
+    }, false);
+    canvas.addEventListener("pointerup",()=>{
+        const thisCamera = dumpCamera();
         if(!_.isEqual(thisCamera,lastCamera)){
-            lastCamera = thisCamera;
-            dispatchCameraChanges();
+            store.dispatch(createActionCamera.CAMERA_CHANGE(thisCamera.position,thisCamera.rotation,thisCamera.radius));
         }
-    });
+    }, false);
     //--------------------
 
 
@@ -165,11 +165,13 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     canvas.addEventListener("contextmenu", onContextMenu, false);
     canvas.addEventListener("pointermove", onPointerMove, false);
 
+    /*
+    todo we dont need to dispose scene
     scene.onDispose = function () {
         canvas.removeEventListener("pointerdown", onPointerDown);
         canvas.removeEventListener("pointerup", onPointerUp);
         canvas.removeEventListener("contextmenu", onContextMenu);
         canvas.removeEventListener("pointermove", onPointerMove);
-    };
+    };*/
     return scene;
 }

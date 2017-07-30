@@ -10,7 +10,6 @@ export const DEFAULT_CAMERA_ROTATION_ALPHA = Math.PI / 4;
 export const DEFAULT_CAMERA_ROTATION_BETA = Math.PI / 4;
 export const DEFAULT_CAMERA_TARGET = new Vector3(0,0,0);
 
-export const DEBOUNCE_CAMERA = 500;
 export const DEBOUNCE_SLIDER = 500;
 export const DEBOUNCE_STATE_TO_URI = 700;
 
