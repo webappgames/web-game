@@ -3,22 +3,23 @@ V tomto díle ukáži, jak spojím jednotlivé soubory do jednoho kompaktního c
 
 
 ##
-Zatím jsem všechny javascriptové soubory přidával přímo do html pomocí tagu <script>. To co jsem naprogramoval šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má např. i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru). JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích, operačních systémech,... proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho ˇˇˇˇnové výhody.
+Zatím jsem všechny javascriptové soubory přidával přímo do index.html pomocí tagu <script>. To, co jsem naprogramoval, šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má např. i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru).
+JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích a operačních systémech. Proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho ˇˇˇˇnové výhody, protože musíte zvolit pouze to, co funguje všude. Tento způsob programování v JS se nazývá **VanillaJS**
+Druhá velká nevýhoda psaní JS kodu přímo je ta, že vzniká velké množství souborů, které musíte ručně a značně neelegantně přidávat do souboru index.html.
 
+Obě tyto nenýhody řeší nadstavby JS, které se do VanillaJS **transpilují**. Existuje několik nadstaveb******* např. CoffeeScript, Babel+Flow, já budu dále používat TypeScript.
 
-
-******ITNetwork článek
-
-
-
-
- ##WebPack
 
 
  ##TypeScript
+Oproti
 
 
  ##Create project
+Velkou
+
+
+
 
 
 

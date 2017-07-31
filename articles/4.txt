@@ -122,16 +122,44 @@ window.addEventListener("resize", function () {
 
 ##Zpět a vpřed
 Nyní ukládáme stav do URL adresy a při načtení hry ho z něj načítáme. Pokud chceme plně využít potenciál webové aplikace, musíme umožnit uživateli klikat na tlačítka zpět a vpřed v prohlížeči.
-/--code js
-let store;
-const canvas = document.getElementById("scene");
-const engine = new BABYLON.Engine(canvas, true);
-const scene = createScene(canvas, engine, ()=>store);
 
+//todo budeme vs budu
+Ve stavu aplikace budeme ukládat poslední akci a přidáme akci CHANGE_STATE, která změní stav podle toho, co ji přijde.
+/--code js
+function stateReducer(state, action) {
+    switch (action.type) {
+        case 'CHANGE_STATE':
+            return  Object.assign({},action.state, {lastAction:action});
+
+        case 'BLOCK_ADD':
+            return {
+                blocks: state.blocks.concat([action.newBlock]),
+                lastAction: action
+            };
+
+        case 'BLOCK_DELETE':
+            return {
+                blocks: state.blocks.filter((block)=>block.id!==action.blockId),
+                lastAction: action
+            };
+
+        default:
+            return state;
+    }
+}
+\--
+
+//todo URL a zkratky vždy velkým
+Do URL budeme ukládat změny stavu pouze pokud poslední akce není CHANGE_STATE:
+/--code js
+const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
+const root = document.getElementById("root");
+const canvas = document.getElementById("scene") as HTMLCanvasElement;
+const engine = new BABYLON.Engine(canvas, true);
+const scene = createScene(canvas, engine, store);
 engine.runRenderLoop(function () {
     scene.render();
 });
-
 window.addEventListener("resize", function () {
     engine.resize();
 });
@@ -139,23 +167,23 @@ window.addEventListener("resize", function () {
 function render() {
     updateScene(scene, store.getState());
 }
-
-//store vytvořím na začátku + vždy když uživatel klikne na zpět nebo vpřed vytvořím store nový a nahradím jím store původní.
-function initializeStore() {
-    store = Redux.createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
-    store.subscribe(()=> {
-        const state = store.getState();
+store.subscribe(()=>
+    const state = store.getState();
+    if(state.lastAction.type!=='CHANGE_STATE'){
         const uri = createUriFromState(state);
-        history.pushState({}, document.title, uri);
-    });
-    store.subscribe(render);
-    render();
+        document.title = title;
+        history.pushState({}, title, uri);
+    }
+});
+store.subscribe(render);
+render();
 
-}
-initializeStore();
-
-//Zde posloucháme, zda uživatel kliknul na tlačítko zpět či vpřed.
-window.onpopstate = initializeStore;
+//todo překlad dispatch
+//Vždy když uživatel klikne na zpět nebo vpřed, odešle se akce CHANGE_STATE.
+window.onpopstate = function () {
+    const state = createStateFromUri(document.location.toString());
+    store.dispatch(createAction.CHANGE_STATE(state));
+};
 \--
 
 ##Titulek
@@ -179,41 +207,15 @@ function createTitleFromState(state) {
 
 A tuto funkci při každé změně stavu využijeme.
 /--code js
-let store;
-const canvas = document.getElementById("scene");
-const engine = new BABYLON.Engine(canvas, true);
-const scene = createScene(canvas, engine, ()=>store);
-
-engine.runRenderLoop(function () {
-    scene.render();
-});
-
-window.addEventListener("resize", function () {
-    engine.resize();
-});
-
-function render() {
-    updateScene(scene, store.getState());
-}
-
-function initializeStore() {
-    const initialState = createStateFromUri(document.location.toString());
-    document.title = createTitleFromState(initialState);
-    store = Redux.createStore(wrapReducer(stateReducer), initialState);
-
-    store.subscribe(()=> {
-        const state = store.getState();
+store.subscribe(()=>
+    const state = store.getState();
+    if(state.lastAction.type!=='CHANGE_STATE'){
         const uri = createUriFromState(state);
         const title = createTitleFromState(state);
         document.title = title;
         history.pushState({}, title, uri);
-    });
-    store.subscribe(render);
-    render();
-}
-initializeStore();
-
-window.onpopstate = initializeStore;
+    }
+});
 \--
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game kde najdeš nejnovější verzi.

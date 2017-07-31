@@ -2,10 +2,20 @@ V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval, **
 V tomto díle ukáži, ***********.
 
 
+##Deploy
+
+
+##Debounce
 
 
 
+##Testy
 
+
+##Konfigurace
+
+
+##Další
 
 
 
