@@ -1,7 +1,6 @@
-// @flow
 import {saveState} from './state-saver';
 
 export default function createUriFromState(state):string{
-    var key = saveState(state);
+    const key = saveState(state);
     return `#${key}`;
 }

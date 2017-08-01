@@ -4,7 +4,6 @@ import {createAction} from '../redux-reducers/ui';
 import MenuItem from 'material-ui/MenuItem';
 import Subheader from 'material-ui/Subheader';
 import ColorPicker from './color-picker';
-import * as FontAwesome from 'react-fontawesome';
 
 
 

@@ -1,4 +1,3 @@
-// @flow
 import {loadState} from './state-saver';
 
 export default function createStateFromUri(uri:string):Object{

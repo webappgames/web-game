@@ -1,17 +1,13 @@
 import * as BABYLON from 'babylonjs';
-import * as _ from "lodash";
-import {Store, Action} from 'redux';
+import {Store} from 'redux';
 import {createAction} from '../redux-reducers/blocks';
-import {createAction as createActionCamera, CameraModes, camera} from '../redux-reducers/camera';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
-import {createMaterial} from './create-material';
-import {COLOR_HOVER} from '../config';
 
 
 
 //todo default vs {} exports
-export function injectBlocksChanges(scene:BABYLON.Scene,store:Store){
+export function injectBlocksChanges(scene:BABYLON.Scene,store:Store<Object>){
 
     const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;

@@ -4,12 +4,9 @@ import UiColor from './ui-color';
 import Environment from './environment';
 import Camera from './camera';
 import {createAction} from '../redux-reducers/ui';
-import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import Subheader from 'material-ui/Subheader';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 
 import * as FontAwesome from 'react-fontawesome';

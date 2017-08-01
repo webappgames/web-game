@@ -19,7 +19,7 @@ export const createAction = {
 
 export function ui(ui=defaultUi, action) {
     return {
-        drawer: action.type===ActionTypes.UI_DRAWER_TOGGLE?(!ui.drawer):ui.drawer,
+        drawer: action.type===ActionTypes.UI_DRAWER_TOGGLE?(!ui.drawer):false,
         //mouseMode:  action.type===ActionTypes.UI_MOUSEMODE_SET?action.value:ui.mouseMode,
         color:  action.type===ActionTypes.UI_COLOR_SET?action.value:ui.color,
     };

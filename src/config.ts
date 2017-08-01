@@ -1,3 +1,4 @@
+import * as BABYLON from 'babylonjs';
 import {Vector3} from './classes/vector3';
 import {Block} from './classes/block';
 
@@ -17,6 +18,14 @@ export const DEBOUNCE_STATE_TO_URI = 700;
 export const BLOCKS_DEFAULT = [
     new Block(undefined,new Vector3(0,0,0),'#cccccc')
 ];
+
+export function configCamera(camera:BABYLON.ArcRotateCamera){
+    camera.panningAxis = new BABYLON.Vector3(1,0,1);
+    camera.panningSensibility = 1;
+    camera.upperBetaLimit = (Math.PI/2)*(9/10);
+    camera.lowerRadiusLimit = 5;
+    camera.upperRadiusLimit = 100;
+}
 
 export const COLOR_HOVER = '#2eff29';
 export const COLOR_GROUND = '#74ffaa'

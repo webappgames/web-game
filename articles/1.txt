@@ -138,11 +138,6 @@ function onPointerUp(event) {
 }
 
 canvas.addEventListener("pointerup", onPointerUp, false);
-
-//Pokud bychom někdy v budoucnu scénu mazaly, potřebujeme odstranit i událost na canvasu.
-scene.onDispose = function () {
-    canvas.removeEventListener("pointerup", onPointerUp);
-}
 \--
 
 

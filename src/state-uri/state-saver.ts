@@ -1,4 +1,3 @@
-// @flow
 import * as uuid from 'uuid';
 
 export function loadState(key:string):Object{
@@ -13,15 +12,12 @@ export function loadState(key:string):Object{
     }
 }
 export function saveState(state:Object){
-
     try {
         const key = uuid.v4();
         const serializedState = JSON.stringify(state);
         localStorage.setItem(key,serializedState);
         return key;
     } catch (err) {
-        //localStorage.
-       //console.log(err);
        return '';
     }
 }

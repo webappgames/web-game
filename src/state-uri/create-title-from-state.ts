@@ -1,4 +1,3 @@
-// @flow
 import {WEB_NAME,TITLE_SEPARATOR} from '../config';
 
 export default function createTitleFromState(state):string {

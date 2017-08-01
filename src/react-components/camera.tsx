@@ -24,27 +24,7 @@ function mapDispatchToProps(dispatch){
 export function Camera({mode,fov,setCameraMode,setFov}) {
     return (
         <div>
-            <Subheader>Player mode</Subheader>
-
-            {/*<MenuItem>
-                <SelectField
-                    value={mode}
-                    onChange={setCameraMode}
-                >
-
-                    <MenuItem
-                        value={CameraModes.ROTATE}
-                        leftIcon={<FontAwesome name="cube"/>}>
-                        Rotate
-                    </MenuItem>
-                    <MenuItem
-                        value={CameraModes.MOVE}
-                        leftIcon={<FontAwesome name="cube"/>}>
-                        Move
-                    </MenuItem>
-
-                </SelectField>
-            </MenuItem>*/}
+            <Subheader>Camera mode</Subheader>
 
             <MenuItem
                 onTouchTap={() => setCameraMode(CameraModes.ROTATE)}

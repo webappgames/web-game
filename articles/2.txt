@@ -73,16 +73,6 @@ function onContextMenu(event){event.preventDefault()}
 canvas.addEventListener("contextmenu",onContextMenu, false);
 \--
 
-Zároveň tento posluchač odstraním, pokud by se scéna mazala.
-
-/--code js
-scene.onDispose = function(){
-    canvas.removeEventListener("pointerup", onPointerUp);
-    canvas.removeEventListener("contextmenu", onContextMenu);
-};
-\--
-*Poznámka: To samé budu dělat i pro další posluchače na canvasu, jen už nebudu psát přímo v tutoriálu.*
-
 
 Materiály
 ####
