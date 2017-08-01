@@ -3,7 +3,8 @@ import {Store} from 'redux';
 import {createAction} from '../redux-reducers/blocks';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
-
+import {createMaterial} from './create-material';
+import {COLOR_HOVER} from '../config';
 
 
 //todo default vs {} exports
@@ -11,6 +12,8 @@ export function injectBlocksChanges(scene:BABYLON.Scene,store:Store<Object>){
 
     const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
+
+    const materialHover = createMaterial(COLOR_HOVER,scene);
 
     let pointUnderPointer:Vector3 = null;
     function onPointerDown(event){

@@ -1,7 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import {Store} from 'redux';
-import {createMaterial} from './create-material';
-import {COLOR_HOVER,configCamera} from '../config';
+import {configCamera} from '../config';
 import {injectCameraChanges} from './inject-camera-changes';
 import {injectBlocksChanges} from './inject-blocks-changes';
 
@@ -18,8 +17,6 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     light.intensity = 0.5;
     const light2 = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
     light2.intensity = 0.5;
-
-    const materialHover = createMaterial(COLOR_HOVER,scene);
 
     const groundMesh = BABYLON.Mesh.CreateGround("ground", 10000, 10000, 2, scene);
     groundMesh.position.y = -0.5;

@@ -21,7 +21,7 @@ export const BLOCKS_DEFAULT = [
 
 export function configCamera(camera:BABYLON.ArcRotateCamera){
     camera.panningAxis = new BABYLON.Vector3(1,0,1);
-    camera.panningSensibility = 1;
+    camera.panningSensibility = 150;
     camera.upperBetaLimit = (Math.PI/2)*(9/10);
     camera.lowerRadiusLimit = 5;
     camera.upperRadiusLimit = 100;
