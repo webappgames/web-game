@@ -1,6 +1,7 @@
 import * as BABYLON from 'babylonjs';
 import {Store} from 'redux';
 import {createAction} from '../redux-reducers/blocks';
+import {MouseModes} from '../redux-reducers/ui';
 import {Block} from '../classes/block';
 import {Vector3} from '../classes/vector3';
 import {createMaterial} from './create-material';
@@ -27,8 +28,20 @@ export function injectBlocksChanges(scene:BABYLON.Scene,store:Store<Object>){
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
         if (pickInfo.hit) {
             const currentMesh = pickInfo.pickedMesh;
+
+            const mouseMode = (store.getState() as any).ui.mouseMode;
+            let button1:number,button2:number;
+            if(mouseMode===MouseModes.ADD){
+                button1=0;
+                button2=2;
+            }else
+            if(mouseMode===MouseModes.DELETE){
+                button1=2;
+                button2=0;
+            }
+
             switch (event.button) {
-                case 0:
+                case button1:
                     let position:Vector3;
 
 
@@ -59,7 +72,7 @@ export function injectBlocksChanges(scene:BABYLON.Scene,store:Store<Object>){
 
                     break;
 
-                case 2:
+                case button2:
                     if(currentMesh.name==='ground')return;
                     store.dispatch(createAction.BLOCK_DELETE(currentMesh.name));
                     break;

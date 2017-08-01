@@ -1,6 +1,6 @@
 import * as React from "react";
 import {connect} from 'react-redux';
-import UiColor from './ui-color';
+import UiColor from './ui';
 import Environment from './environment';
 import Camera from './camera';
 import {createAction} from '../redux-reducers/ui';
@@ -8,7 +8,6 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Divider from 'material-ui/Divider';
-
 import * as FontAwesome from 'react-fontawesome';
 
 
