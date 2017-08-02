@@ -1,4 +1,4 @@
-V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval, co můžu díky stavu hry docílit.
+V "minulém díle":https://www.itnetwork.cz/javascript/zpet-a-vpred jsem ukazoval, co můžu díky stavu hry docílit.
 V tomto díle ukáži, jak spojím jednotlivé soubory do jednoho kompaktního celku.
 
 
@@ -54,4 +54,4 @@ Do souboru index.html už nebudu přidávat každý JavaScriptový soubor zvlá�
 
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
-V "dalším díle": ukáži, ************.
+V "dalším díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani ukáži, ************.

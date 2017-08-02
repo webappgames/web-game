@@ -1,4 +1,4 @@
-V "minulém díle":https://www.itnetwork.cz/javascript/******* jsem ukazoval výrobu user interface pro hru.
+V "minulém díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani jsem ukazoval výrobu user interface pro hru.
 V tomto díle ukáži nasazovaní celého projektu na server.
 
 ##Nasazování přes FTP?
