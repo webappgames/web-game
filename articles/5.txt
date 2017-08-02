@@ -1,59 +1,104 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/zpet-a-vpred jsem ukazoval, co můžu díky stavu hry docílit.
 V tomto díle ukáži, jak spojím jednotlivé soubory do jednoho kompaktního celku.
 
-
 ##Nadstavby JavaScriptu
-Zatím jsem všechny javascriptové soubory přidával přímo do index.html pomocí tagu <script>. To, co jsem naprogramoval, šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má např. i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru).
-JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích a operačních systémech. Proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho ˇˇˇˇnové výhody, protože musíte zvolit pouze to, co funguje všude. Tento způsob programování v JS se nazývá **VanillaJS**
+Zatím jsem všechny javascriptové soubory přidával přímo do index.html pomocí tagu <script>. To, co jsem naprogramoval, šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má například i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru).
+JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích a operačních systémech. Proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho "nové výhody":http://es6-features.org/, protože musíte zvolit jeho nižší verzi a vzdát se některých jeho funkcí.
 Druhá velká nevýhoda psaní JS kodu přímo je ta, že vzniká velké množství souborů, které musíte ručně a značně neelegantně přidávat do souboru index.html.
 
-Obě tyto nenýhody řeší nadstavby JS, které se do VanillaJS **transpilují**. Existuje několik nadstaveb******* např. CoffeeScript, Babel+Flow, já budu dále používat TypeScript.
-
+Obě tyto nenýhody řeší nadstavby JS, které se do VanillaJS **transpilují**. Existuje mnoho "nadstaveb":https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-js např. CoffeeScript, Babel+Flow, já budu dále používat "TypeScript":https://www.typescriptlang.org/.
 
  ##TypeScript
-Oproti běžnému Vanilla JavaScriptu má TypeScript několik velkých výhod:
-- Poskytuje typovou kontroluˇˇˇˇˇˇ a tím zabraňuje potenciálním chybám.
-- Lze v něm využit všechny výhody JavaScriptu z jeho ES6 verze´´´´´´´´.
-- Pomocí importů a exportů umožňuje propojit jednotlivé soubory do uceleného celku.
+Oproti běžnému JavaScriptu má TypeScript několik velkých výhod:
+- Poskytuje "typovou kontrolu":https://cs.wikipedia.org/wiki/Typov%C3%A1_kontrola a tím zabraňuje potenciálním chybám.
+- Lze v něm využit všechny výhody JavaScriptu z jeho "ES6 verze":http://es6-features.org/.
+- Pomocí importů a exportů umožňuje propojit jednotlivé soubory do uceleného projektu.
 
-Pokud bychom projekt, co máme přepsali do TypeScriptu, vypadal by takto:
+Pokud bychom hru, co máme přepsali do TypeScriptu, vypadal by index.tsx takto:
 
-code
+/--code js
+import './style/index.css';
+import * as BABYLON from 'babylonjs';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import {createStore} from 'redux';
+import createStateFromUri from './state-uri/create-state-from-uri';
+import createTitleFromState from './state-uri/create-title-from-state';
+import createUriFromState from './state-uri/create-uri-from-state';
+import createScene from './scene/create-scene';
+import updateScene from './scene/update-scene';
+import {stateReducer} from './redux-reducers/state-reducer';
+import {wrapReducer} from './tools/wrap-reducer';
 
-code
+const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
+const root = document.getElementById("root");
+const canvas = document.getElementById("scene") as HTMLCanvasElement;
+const engine = new BABYLON.Engine(canvas, true);
+const scene = createScene(canvas, engine, store);
+engine.runRenderLoop(function () {
+    scene.render();
+});
+window.addEventListener("resize", function () {
+    engine.resize();
+});
 
-code
+function render() {
+    updateScene(scene, store.getState());
+}
+store.subscribe(()=> {
+    const state = store.getState() as any;
+    if (state.lastAction.type !== 'CHANGE_STATE') {
+        const uri = createUriFromState(state);
+        const title = createTitleFromState(state);
+        document.title = title;
+        history.pushState({}, title, uri);
+    }
+});
+
+
+store.subscribe(render);
+render();
+
+window.onpopstate = function () {
+    const state = createStateFromUri(document.location.toString());
+    store.dispatch({type:'CHANGE_STATE',state});
+};
+\--
+Ostatní soubory si můžeš stáhnout pod článkem.
 
 Pro TypeScript transpilátor vyrobím konfigurační soubor tsconfig.json.
 
-code
-
-...
-
+/--code js
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react"
+  }
+}
+\--
 
  ##Create project
-Tyto soubory se musí převést do JavaScriptu k tomu slouží TypeScript transpilátor. Následné se soubory spojí do jednoho a no to se obvykle používá nástroj "WebPack":.
-Je ovšem docela složité nakonfigurovat a nastavit vše tak, aby hladce fungovalo, proto se často používají předpřipravené projekty. Vzhledem k tomu, že v dalším článku budu používat knihovnu React, použiji k výrobě předpřipraveného projektu nástroj "create react project".
+Tyto soubory se musí převést do JavaScriptu k tomu slouží TypeScript transpilátor. Následně se soubory spojí do jednoho. Na to se obvykle používá nástroj "WebPack":https://webpack.github.io/.
+Je ovšem docela složité nakonfigurovat a nastavit vše tak, aby hladce fungovalo. Proto se často používají předpřipravené projekty. Vzhledem k tomu, že v dalším článku budu používat knihovnu React, použiji k výrobě předpřipraveného projektu nástroj **create-react-app**.
 
-Pro spuštění tohoto nástroje potřebuji mít nainstalovaný "node.js". Když mám nainstalovaný node.js "nainstaluji create react project". Potom si otevřu příkazový řádek ve složce, kde chci projekt mít na napíšu do něj:
-
+Pro spuštění tohoto nástroje potřebuji mít nainstalovaný "Node.js":https://nodejs.org/en/download/. Když mám nainstalovaný Node "nainstaluji create-react-app":https://github.com/facebookincubator/create-react-app. Potom si otevřu příkazový řádek ve složce, kde chci projekt mít a spustím:
 /--code
 create-react-app web-game --scripts-version=react-scripts-ts
 \--
 
 Tím se mi vytvoří jednoduchý předpřipravený projekt. Skládá se z několika důležitých součástí:
-
 - Složka **src** obsahuje všechny zdrojové kódy projektu, kromě souboru index.html.
-- Soubor **src/index.tsx** je soubor, kterého se WebPack chytí a dále ho spojuje s dalšími soubory, které má importované.
+- Souboru **src/index.tsx** se WebPack chytí a dále ho spojuje s dalšími soubory, které má importované.
 - Složka **public** obsahuje vše, co není potřeba transpilovat.
 - Soubor **public/index.html**
-- Soubor **package.json** různé informace o projektu a hlavně popis balíčků, které se v projektu využívají.
-- Složka **node_modules** obsahuje jednotlivé balíčky, které se instalují pomocí nástroje **npm** nebo **yarn**. Sem se instaluju to, co je popsáno v **package.json**. Tato složka se necommituje do git repozitáře, protože ji lze kdykoliv vytvořit pomocí příkazu "npm install" nebo "yarn install".
+- Soubor **package.json** uchovává různé informace o projektu a hlavně seznam balíčků, které se v projektu využívají.
+- Složka **node_modules** obsahuje jednotlivé balíčky, které se instalují pomocí nástroje **npm** nebo **Yarn**. Sem se instaluje to, co je popsáno v **package.json**. Tato složka se necommituje do git repozitáře, protože ji lze kdykoliv vytvořit pomocí příkazu "npm install" nebo "yarn install".
 
-Typescriptové soubory i s konfigurací umístím do složky **src** a do <body> v souboru index.html přidám canvas, jak jsem to udělal v "prvním článku".
+TypeScriptové soubory i s konfigurací umístím do složky **src** a do <body> v souboru index.html přidám canvas, jak jsem to udělal v "prvním článku".
 
 Do souboru index.html už nebudu přidávat každý JavaScriptový soubor zvlášť, ale pouze jeden, který mi WebPack automaticky vytvoří spojením mých TypeScriptových souborů a nainstalovaných node_modules.
-
 
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
