@@ -1,4 +1,6 @@
-function loadState(key){
+import * as uuid from 'uuid';
+
+export function loadState(key){
     try {
         const serializedState = localStorage.getItem(key);
         if (serializedState === null) {
@@ -9,7 +11,7 @@ function loadState(key){
         return null;
     }
 }
-function saveState(state){
+export function saveState(state){
     const key = uuid.v4();
     const serializedState = JSON.stringify(state);
     localStorage.setItem(key,serializedState);

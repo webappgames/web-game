@@ -1,6 +1,10 @@
-function createScene(canvas, engine) {
+import * as BABYLON from 'babylonjs';
+import {Store} from 'redux';
+import * as uuid from 'uuid';
+
+export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color3(1, 1, 1);
+    scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
 
     const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;
@@ -9,7 +13,7 @@ function createScene(canvas, engine) {
     const light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
 
     const materialNormal = new BABYLON.StandardMaterial("material-normal", scene);
-    materialNormal.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);//Také bych mohl vyrobit barvu z hexadecimálního zápisu BABYLON.Color3.FromHexString("#666666");
+    materialNormal.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
 
     const materialHover = new BABYLON.StandardMaterial("material-hover", scene);
     materialHover.diffuseColor = new BABYLON.Color3(0.4, 1, 0.4);

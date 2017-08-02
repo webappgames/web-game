@@ -1,5 +1,4 @@
-function wrapReducer(reducer){
-    //Kontrola pro případ, že bych byl v prostředí node.js
+export function wrapReducer(reducer){
     if('groupCollapsed' in console){
         return function (oldState,action) {
             console.groupCollapsed(`==[${action.type}]==>`);

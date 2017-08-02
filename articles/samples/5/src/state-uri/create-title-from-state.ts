@@ -1,7 +1,7 @@
 const WEB_NAME = 'Simple web game';
 const TITLE_SEPARATOR = ' | ';
 
-function createTitleFromState(state) {
+export default function createTitleFromState(state) {
     let titleParts = [];
 
     if (state.blocks.length> 1) {

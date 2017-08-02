@@ -1,7 +1,9 @@
-function stateReducer(state, action) {
+import * as _ from "lodash";
+
+export function stateReducer(state, action) {
     switch (action.type) {
         case 'CHANGE_STATE':
-            return  Object.assign({},action.state, {lastAction:action});
+            return  _.assign({},action.state, {lastAction:action});
 
         case 'BLOCK_ADD':
             return {

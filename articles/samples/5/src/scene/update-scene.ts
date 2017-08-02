@@ -1,10 +1,12 @@
-function updateScene(scene, state) {
+import * as BABYLON from 'babylonjs';
+
+export default function updateScene(scene:BABYLON.Scene, state):void {
     scene.meshes.forEach((mesh) => {
         mesh.dispose();
     });
     scene.meshes = [];
 
-    const materialNormal = scene.materials.find(material=>material.name==='material-normal');
+    const materialNormal = (scene.materials as any).find(material=>material.name==='material-normal');
 
     state.blocks.forEach(block=> {
         const newBox = BABYLON.Mesh.CreateBox(block.id, 1, scene);
