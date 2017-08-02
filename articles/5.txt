@@ -37,15 +37,18 @@ Je ovšem docela složité nakonfigurovat a nastavit vše tak, aby hladce fungov
 
 Pro spuštění tohoto nástroje potřebuji mít nainstalovaný "node.js". Když mám nainstalovaný node.js "nainstaluji create react project". Potom si otevřu příkazový řádek ve složce, kde chci projekt mít na napíšu do něj:
 
-code
+/--code
+create-react-app my-app --scripts-version=react-scripts-ts
+\--
 
-Tím se mi jednoduchý předpřipravený projekt. Skládá se z několika důležitých součástí:
+Tím se mi vytvoří jednoduchý předpřipravený projekt. Skládá se z několika důležitých součástí:
 
-- složka **src**
-- složka **public**
-- soubor **public/index.html**
-- soubor **package.json**
-- složka **node_modules**
+- Složka **src** obsahuje všechny zdrojové kódy projektu, kromě souboru index.html.
+- Soubor **src/index.tsx** je soubor, kterého se WebPack chytí a dále ho spojuje s dalšími soubory, které má importované.
+- Složka **public** obsahuje vše, co není potřeba transpilovat.
+- Soubor **public/index.html**
+- Soubor **package.json** různé informace o projektu a hlavně popis balíčků, které se v projektu využívají.
+- Složka **node_modules** obsahuje jednotlivé balíčky, které se instalují pomocí nástroje **npm** nebo **yarn**. Sem se instaluju to, co je popsáno v **package.json**. Tato složka se necommituje do git repozitáře, protože ji lze kdykoliv vytvořit pomocí příkazu "npm install" nebo "yarn install".
 
 Typescriptové soubory i s konfigurací umístím do složky **src** a do <body> v souboru index.html přidám canvas, jak jsem to udělal v "prvním článku".
 
@@ -54,4 +57,4 @@ Do souboru index.html už nebudu přidávat každý JavaScriptový soubor zvlá�
 
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
-V "dalším díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani ukáži, ************.
+V "dalším díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a Material UI.

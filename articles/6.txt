@@ -1,5 +1,5 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/typescript jsem ukazoval, jaké výhody má TypeScript oproti JavaScriptu.
-V tomto díle ukáži, jak vyrobím user interface pomocí Reactu a Material UI designu.
+V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a Material UI.
 
 
 ##React
@@ -22,4 +22,4 @@ V tomto díle ukáži, jak vyrobím user interface pomocí Reactu a Material UI 
 
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
-V "dalším díle":https://www.itnetwork.cz/javascript/nasazeni-na-server ukáži, ************.
+V "dalším díle":https://www.itnetwork.cz/javascript/nasazeni-na-server ukáži nasazovaní celého projektu na server.

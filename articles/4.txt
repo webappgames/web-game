@@ -123,7 +123,6 @@ window.addEventListener("resize", function () {
 ##Zpět a vpřed
 Nyní ukládáme stav do URL adresy a při načtení hry ho z něj načítáme. Pokud chceme plně využít potenciál webové aplikace, musíme umožnit uživateli klikat na tlačítka zpět a vpřed v prohlížeči.
 
-//todo budeme vs budu
 Ve stavu aplikace budeme ukládat poslední akci a přidáme akci CHANGE_STATE, která změní stav podle toho, co ji přijde.
 /--code js
 function stateReducer(state, action) {
@@ -149,7 +148,6 @@ function stateReducer(state, action) {
 }
 \--
 
-//todo URL a zkratky vždy velkým
 Do URL budeme ukládat změny stavu pouze pokud poslední akce není CHANGE_STATE:
 /--code js
 const store = Redux.createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
