@@ -152,9 +152,9 @@ function stateReducer(state, action) {
 //todo URL a zkratky vždy velkým
 Do URL budeme ukládat změny stavu pouze pokud poslední akce není CHANGE_STATE:
 /--code js
-const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
+const store = Redux.createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
 const root = document.getElementById("root");
-const canvas = document.getElementById("scene") as HTMLCanvasElement;
+const canvas = document.getElementById("scene");
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, store);
 engine.runRenderLoop(function () {
@@ -167,18 +167,16 @@ window.addEventListener("resize", function () {
 function render() {
     updateScene(scene, store.getState());
 }
-store.subscribe(()=>
+store.subscribe(()=>{
     const state = store.getState();
     if(state.lastAction.type!=='CHANGE_STATE'){
         const uri = createUriFromState(state);
-        document.title = title;
-        history.pushState({}, title, uri);
+        history.pushState({}, '', uri);
     }
 });
 store.subscribe(render);
 render();
 
-//todo překlad dispatch
 //Vždy když uživatel klikne na zpět nebo vpřed, odešle se akce CHANGE_STATE.
 window.onpopstate = function () {
     const state = createStateFromUri(document.location.toString());

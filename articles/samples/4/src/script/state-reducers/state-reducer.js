@@ -1,14 +1,18 @@
 function stateReducer(state, action) {
     switch (action.type) {
+        case 'CHANGE_STATE':
+            return  Object.assign({},action.state, {lastAction:action});
 
         case 'BLOCK_ADD':
             return {
-                blocks: state.blocks.concat([action.newBlock])
+                blocks: state.blocks.concat([action.newBlock]),
+                lastAction: action
             };
 
         case 'BLOCK_DELETE':
             return {
-                blocks: state.blocks.filter((block)=>block.id!==action.blockId)
+                blocks: state.blocks.filter((block)=>block.id!==action.blockId),
+                lastAction: action
             };
 
         default:
