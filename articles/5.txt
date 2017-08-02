@@ -10,25 +10,48 @@ Druhá velká nevýhoda psaní JS kodu přímo je ta, že vzniká velké množst
 Obě tyto nenýhody řeší nadstavby JS, které se do VanillaJS **transpilují**. Existuje několik nadstaveb******* např. CoffeeScript, Babel+Flow, já budu dále používat TypeScript.
 
 
-
  ##TypeScript
-Oproti
+Oproti běžnému Vanilla JavaScriptu má TypeScript několik velkých výhod:
+- Poskytuje typovou kontroluˇˇˇˇˇˇ a tím zabraňuje potenciálním chybám.
+- Lze v něm využit všechny výhody JavaScriptu z jeho ES6 verze´´´´´´´´.
+- Pomocí importů a exportů umožňuje propojit jednotlivé soubory do uceleného celku.
+
+Pokud bychom projekt, co máme přepsali do TypeScriptu, vypadal by takto:
+
+code
+
+code
+
+code
+
+Pro TypeScript transpilátor vyrobím konfigurační soubor tsconfig.json.
+
+code
+
+...
 
 
  ##Create project
-Velkou
+Tyto soubory se musí převést do JavaScriptu k tomu slouží TypeScript transpilátor. Následné se soubory spojí do jednoho a no to se obvykle používá nástroj "WebPack":.
+Je ovšem docela složité nakonfigurovat a nastavit vše tak, aby hladce fungovalo, proto se často používají předpřipravené projekty. Vzhledem k tomu, že v dalším článku budu používat knihovnu React, použiji k výrobě předpřipraveného projektu nástroj "create react project".
+
+Pro spuštění tohoto nástroje potřebuji mít nainstalovaný "node.js". Když mám nainstalovaný node.js "nainstaluji create react project". Potom si otevřu příkazový řádek ve složce, kde chci projekt mít na napíšu do něj:
+
+code
+
+Tím se mi jednoduchý předpřipravený projekt. Skládá se z několika důležitých součástí:
+
+- složka **src**
+- složka **public**
+- soubor **public/index.html**
+- soubor **package.json**
+- složka **node_modules**
+
+Typescriptové soubory i s konfigurací umístím do složky **src** a do <body> v souboru index.html přidám canvas, jak jsem to udělal v "prvním článku".
+
+Do souboru index.html už nebudu přidávat každý JavaScriptový soubor zvlášť, ale pouze jeden, který mi WebPack automaticky vytvoří spojením mých TypeScriptových souborů a nainstalovaných node_modules.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Teď máme ********. Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game a pod tagem **0.******.0** najdeš, co jsme v tomto díle napsali. V dalším díle ukáži, ************.
+Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
+V "dalším díle": ukáži, ************.

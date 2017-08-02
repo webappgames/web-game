@@ -218,5 +218,5 @@ store.subscribe(()=>
 });
 \--
 
-Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game kde najdeš nejnovější verzi.
-V dalším díle ukáži, jak jednotlivé Javascriptové soubory spojit pomocí nástroje WebPack.
+Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
+V "dalším díle": ukáži, jak jednotlivé Javascriptové soubory spojit pomocí nástroje WebPack.

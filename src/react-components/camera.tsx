@@ -39,8 +39,7 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
                 Move
             </MenuItem>
 
-            <Subheader>Camera FOV</Subheader>
-
+            {/*<Subheader>Camera FOV</Subheader>
             <MenuItem>
                 <Slider
                     min={0.1}
@@ -49,7 +48,7 @@ export function Camera({mode,fov,setCameraMode,setFov}) {
                     value={fov}
                     onChange={_.debounce(setFov,DEBOUNCE_SLIDER)}
                 />
-            </MenuItem>
+            </MenuItem>*/}
 
         </div>
     )

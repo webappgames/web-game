@@ -190,5 +190,5 @@ function onPointerUp(event) {
 \--
 
 
-Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game kde najdeš nejnovější verzi.
+Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
 V "dalším díle":https://www.itnetwork.cz/javascript/3d-hra/vylepsovani-zakladni-sceny ukáži, jak mohu krychle zarovnat do mřížky, jak krychle mazat. Napíši něco k materiálům a jak díky tomu mohu provádět hoover efekt podobný css.
