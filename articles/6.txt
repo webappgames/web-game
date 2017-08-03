@@ -1,8 +1,24 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/typescript jsem ukazoval, jaké výhody má TypeScript oproti JavaScriptu.
 V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a Material UI.
 
+Nebudu vytvářet nic složitého, pouze výběr barvy bloku, který přidávám + ně
+
+
+
+
+
+
+
 
 ##React
+React je Javascriptový framework pro psaní uživatelských rozhraní. Dále v tomto článk
+
+
+Naše
+
+"":https://www.dzejes.cz/react-uvod.html
+
+
 
 <div>
 </div>
