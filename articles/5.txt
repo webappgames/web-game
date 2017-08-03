@@ -8,7 +8,7 @@ Druhá velká nevýhoda psaní JS kodu přímo je ta, že vzniká velké množst
 
 Obě tyto nenýhody řeší nadstavby JS, které se do VanillaJS **transpilují**. Existuje mnoho "nadstaveb":https://github.com/jashkenas/coffeescript/wiki/list-of-languages-that-compile-to-js např. CoffeeScript, Babel+Flow, já budu dále používat "TypeScript":https://www.typescriptlang.org/.
 
- ##TypeScript
+##TypeScript
 Oproti běžnému JavaScriptu má TypeScript několik velkých výhod:
 - Poskytuje "typovou kontrolu":https://cs.wikipedia.org/wiki/Typov%C3%A1_kontrola a tím zabraňuje potenciálním chybám.
 - Lze v něm využit všechny výhody JavaScriptu z jeho "ES6 verze":http://es6-features.org/.
@@ -79,7 +79,7 @@ Pro TypeScript transpilátor vyrobím konfigurační soubor tsconfig.json.
 }
 \--
 
- ##Create project
+##create-react-app
 Tyto soubory se musí převést do JavaScriptu k tomu slouží TypeScript transpilátor. Následně se soubory spojí do jednoho. Na to se obvykle používá nástroj "WebPack":https://webpack.github.io/.
 Je ovšem docela složité nakonfigurovat a nastavit vše tak, aby hladce fungovalo. Proto se často používají předpřipravené projekty. Vzhledem k tomu, že v dalším článku budu používat knihovnu React, použiji k výrobě předpřipraveného projektu nástroj **create-react-app**.
 
