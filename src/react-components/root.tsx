@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch){
     }
 };
 
-export function Root({drawer,onMenu}){
+function Root({drawer,onMenu}){
     return (
         <div>
 

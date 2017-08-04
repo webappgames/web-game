@@ -21,7 +21,7 @@ function mapDispatchToProps(dispatch){
 
 
 
-export function Camera({mode,fov,setCameraMode,setFov}) {
+function Camera({mode,fov,setCameraMode,setFov}) {
     return (
         <div>
             <Subheader>Camera mode</Subheader>

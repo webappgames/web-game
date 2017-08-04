@@ -20,7 +20,7 @@ function mapDispatchToProps(dispatch){
 
 
 
-export function Environment({groundColor,skyColor,setGroundColor,setSkyColor}) {
+function Environment({groundColor,skyColor,setGroundColor,setSkyColor}) {
     return (
         <div>
             <Subheader>Ground color</Subheader>

@@ -12,7 +12,6 @@ import {stateReducer} from './redux-reducers/state-reducer';
 import {wrapReducer} from './tools/wrap-reducer';
 
 const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
-const root = document.getElementById("root");
 const canvas = document.getElementById("scene") as HTMLCanvasElement;
 const engine = new BABYLON.Engine(canvas, true);
 const scene = createScene(canvas, engine, store);

@@ -8,6 +8,7 @@ export default function updateScene(scene:BABYLON.Scene, state):void {
 
     const materialNormal = (scene.materials as any).find(material=>material.name==='material-normal');
 
+    console.log(state);
     state.blocks.forEach(block=> {
         const newBox = BABYLON.Mesh.CreateBox(block.id, 1, scene);
         newBox.material = materialNormal;

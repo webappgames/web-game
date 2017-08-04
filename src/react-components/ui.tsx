@@ -27,7 +27,7 @@ const PALETTE_BLOCK=[
 ];
 
 
-export function UiColor({color,mouseMode,setColor,setMouseMode}) {
+function UiColor({color,mouseMode,setColor,setMouseMode}) {
     return (
         <div>
 

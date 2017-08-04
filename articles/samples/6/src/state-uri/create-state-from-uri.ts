@@ -1,5 +1,4 @@
 import {loadState} from './state-saver';
-import {defaultState} from './default-state';
 
 export default function createStateFromUri(uri){
     const key = uri.split('#',2)[1];
@@ -7,6 +6,6 @@ export default function createStateFromUri(uri){
     if(state){
         return state;
     }else{
-        return defaultState;
+        return {};
     }
 }
