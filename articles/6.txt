@@ -1,7 +1,13 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/typescript jsem ukazoval, jaké výhody má TypeScript oproti JavaScriptu.
 V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a Material UI.
 
-Nebudu vytvářet nic složitého, pouze výběr barvy bloku, který přidávám + ně
+Nebudu vytvářet nic složitého. V rámci uživatelského rozhraní chci zobrazit výběr barvy bloku a zobrazený text s počtem kostiček. To vše v levé vysouvací liště vedle scény.
+
+
+
+##Stav
+Abychom všechny nové funkčnosti mohli implementovat, musíme změnit strukturu stavu naší hry.
+
 
 
 
@@ -11,12 +17,16 @@ Nebudu vytvářet nic složitého, pouze výběr barvy bloku, který přidávám
 
 
 ##React
-React je Javascriptový framework pro psaní uživatelských rozhraní. Dále v tomto článk
+React je Javascriptový framework pro psaní uživatelských rozhraní. Dále v tomto článku budu předpokládat základní znalost "Reactu":, "JSX syntaxe": a "react-redux":. Pokud o tomto frameworku slyšíš poprvé, můžeš si přečíst např. "tento článek":https://www.dzejes.cz/react-uvod.html.
+
+Také budu využívat "Material UI":http://www.material-ui.com/#/ , abych se nezdržoval stylováním komponent.
 
 
-Naše
+Naše React komponenty budou:
+- **Root** bude obsahovat levou lištu, kde budou komponenty Heading a BlockColor. Tato lišta bude vysouvací.
+- **Heading** bude informace o počtu kostiček.
+- **BlockColor** zobrazí aktuální barvu bloku a umožní její změnu.
 
-"":https://www.dzejes.cz/react-uvod.html
 
 
 
