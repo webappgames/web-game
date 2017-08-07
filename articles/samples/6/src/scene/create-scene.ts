@@ -12,8 +12,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
 
     const light = new BABYLON.HemisphericLight("hemi", new BABYLON.Vector3(0, 1, 1 / 2), scene);
 
-    const materialNormal = new BABYLON.StandardMaterial("material-normal", scene);
-    materialNormal.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
+    //const materialNormal = new BABYLON.StandardMaterial("material-normal", scene);
+    //materialNormal.diffuseColor = new BABYLON.Color3(0.4, 0.4, 0.4);
 
     const materialHover = new BABYLON.StandardMaterial("material-hover", scene);
     materialHover.diffuseColor = new BABYLON.Color3(0.4, 1, 0.4);
@@ -43,7 +43,8 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
                                 x: Math.floor(position.x),
                                 y: Math.floor(position.y),
                                 z: Math.floor(position.z)
-                            }
+                            },
+                            color: (store.getState() as any).ui.color
                         }
                     });
                     break;
@@ -60,14 +61,16 @@ export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.E
     }
 
     let lastMesh = null;
+    let lastMaterial:BABYLON.Material = null;
 
     function onPointerMove(event) {
         if (lastMesh) {
-            lastMesh.material = materialNormal;
+            lastMesh.material = lastMaterial;
         }
         const pickInfo = scene.pick(scene.pointerX, scene.pointerY);
         if (pickInfo.hit) {
             const currentMesh = pickInfo.pickedMesh;
+            lastMaterial = currentMesh.material;
             currentMesh.material = materialHover;
             lastMesh = currentMesh;
         } else {

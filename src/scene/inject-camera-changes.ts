@@ -7,7 +7,7 @@ import {Vector3} from '../classes/vector3';
 
 export function injectCameraChanges(scene:BABYLON.Scene,store:Store<Object>){
 
-    const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
+    const canvas = scene.getEngine().getRenderingCanvas() as any;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
 
     let lastCamera;

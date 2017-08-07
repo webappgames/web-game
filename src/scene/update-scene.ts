@@ -4,9 +4,7 @@ import {CameraModes} from '../redux-reducers/camera';
 
 export default function updateScene(scene:BABYLON.Scene, state):void {
 
-
-
-    const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
+    const canvas = scene.getEngine().getRenderingCanvas() as any;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
     camera.detachControl(canvas);
 

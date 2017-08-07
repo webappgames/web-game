@@ -11,7 +11,7 @@ import {COLOR_HOVER} from '../config';
 //todo default vs {} exports
 export function injectBlocksChanges(scene:BABYLON.Scene,store:Store<Object>){
 
-    const canvas = scene.getEngine().getRenderingCanvas() as HTMLCanvasElement;
+    const canvas = scene.getEngine().getRenderingCanvas() as any;
     const camera = scene.activeCamera as BABYLON.ArcRotateCamera;
 
     const materialHover = createMaterial(COLOR_HOVER,scene);

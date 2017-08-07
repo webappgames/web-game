@@ -19,7 +19,7 @@ import {DEBOUNCE_STATE_TO_URI} from './config';
 
 const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
 const root = document.getElementById("root");
-const canvas = document.getElementById("scene") as HTMLCanvasElement;
+const canvas = document.getElementById("scene") as any;//todo HTMLCanvasElement;
 canvas.style.position='fixed';
 canvas.style.top='0';
 canvas.style.left='0';
