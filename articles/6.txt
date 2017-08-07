@@ -3,17 +3,70 @@ V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a M
 
 Nebudu vytvářet nic složitého. V rámci uživatelského rozhraní chci zobrazit výběr barvy bloku a zobrazený text s počtem kostiček. To vše v levé vysouvací liště vedle scény.
 
-
-
 ##Stav
-Abychom všechny nové funkčnosti mohli implementovat, musíme změnit strukturu stavu naší hry.
+Abychom všechny nové funkčnosti mohli implementovat, musíme změnit strukturu stavu naší hry. Kromě bloků a poslední akce musíme držet stav uživatelského rozhraní. To jsou dvě hodnoty navíc:
+-ui.**drawer** říká, zda je levá lišta vysunutá.
+-ui.**color** je barva, kterou máme aktuálně vybranou.
 
+Takto např. bude vypadat stav hry:
+/--code js
+{
+    "blocks": [
+        {
+            "id": "00dc4850-98cc-43ed-9965-1f6b08cb93da",
+            "position": {
+                "x": 1,
+                "y": 1,
+                "z": 0
+            },
+            "color": "#d74040"
+        },
+        {
+            "id": "d5a0191d-1c7f-495d-9aa0-65236441f513",
+            "position": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "color": "#d74040"
+        }
+    ],
+    "ui": {
+        "drawer": true,
+        "color": "#d74040"
+    },
+    "lastAction": {
+        "type": "BLOCK_ADD",
+        "newBlock": {
+            "id": "d5a0191d-1c7f-495d-9aa0-65236441f513",
+            "position": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "color": "#d74040"
+        }
+    }
+}
+\--
 
+K akcím, co máme přibudou ještě:
+-**UI_DRAWER_TOGGLE** zobrazí či skryje levou lištu.
+-**UI_COLOR_SET** nastaví barvu.
 
+Spravovat takto složitý stav pouze pomocí jednoho reduceru je velmi nepřehledné. Proto využiji funkci Reduxu "combineReducers":.
 
+##index.ts
+/--code js
+\--
 
+##blocks.ts
+/--code js
+\--
 
-
+##ui.ts
+/--code js
+\--
 
 
 ##React
@@ -27,24 +80,21 @@ Naše React komponenty budou:
 - **Heading** bude informace o počtu kostiček.
 - **BlockColor** zobrazí aktuální barvu bloku a umožní její změnu.
 
+##root.tsx
+/--code js
+\--
 
+##heading.tsx
+/--code js
+\--
 
+##block-color.tsx
+/--code js
+\--
 
-<div>
-</div>
-
-
-##Material UI design
-
-
-
-##React-Redux
-
-
-
-#Výběr barvy
-
-
+Nakonec Root komponentu vyrendrujeme a !napojíme na store pomocí react-redux":
+/--code js
+\--
 
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
