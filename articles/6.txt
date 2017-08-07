@@ -3,8 +3,11 @@ V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a M
 
 Nebudu vytvářet nic složitého. V rámci uživatelského rozhraní chci zobrazit výběr barvy bloku a zobrazený text s počtem kostiček. To vše v levé vysouvací liště vedle scény.
 
+.<>
+[* 6-main-preview.png .(aaaaa) *]
+
 ##Stav
-Abychom všechny nové funkčnosti mohli implementovat, musíme změnit strukturu stavu naší hry. Kromě bloků a poslední akce musíme držet stav uživatelského rozhraní. To jsou dvě hodnoty navíc:
+Abychom mohli všechny nové funkčnosti implementovat, musíme změnit strukturu stavu hry. Kromě bloků a poslední akce musíme držet stav uživatelského rozhraní. To budou dvě hodnoty navíc:
 -ui.**drawer** říká, zda je levá lišta vysunutá.
 -ui.**color** je barva, kterou máme aktuálně vybranou.
 
@@ -50,52 +53,230 @@ Takto např. bude vypadat stav hry:
 }
 \--
 
-K akcím, co máme přibudou ještě:
+K akcím, co máme, přibudou ještě:
 -**UI_DRAWER_TOGGLE** zobrazí či skryje levou lištu.
 -**UI_COLOR_SET** nastaví barvu.
 
-Spravovat takto složitý stav pouze pomocí jednoho reduceru je velmi nepřehledné. Proto využiji funkci Reduxu "combineReducers":.
+Spravovat takto složitý stav pouze pomocí jednoho reduceru je velmi nepřehledné. Proto využiji funkci Reduxu "combineReducers":http://redux.js.org/docs/api/combineReducers.html.
 
 ##index.ts
 /--code js
+import { combineReducers } from 'redux'
+import * as _ from "lodash";
+import blocks from './blocks';
+import ui from './ui';
+
+
+function lastAction(previousAction,action){
+    return action;
+}
+
+
+const stateReducerInner = combineReducers({
+    blocks,
+    ui,
+    lastAction
+});
+
+export enum ActionTypes{
+    CHANGE_STATE='CHANGE_STATE',
+}
+
+export const createAction = {
+    CHANGE_STATE: (state)=>({type:ActionTypes.CHANGE_STATE,state}),
+};
+
+export function stateReducer(state, action) {
+    if (action.type === ActionTypes.CHANGE_STATE) {
+        return _.assign({},action.state, {lastAction:action});
+    } else {
+        return stateReducerInner(state, action);
+    }
+};
 \--
 
 ##blocks.ts
 /--code js
+const defaultBlocks = [
+    {
+        id:'My first block!!!',
+        position:{x:0,y:0,z:0},
+        color:'#cccccc'
+    }
+];
+
+export default function blocks(blocks = defaultBlocks, action) {
+    switch (action.type) {
+
+        case 'BLOCK_ADD':
+            return blocks.concat([action.newBlock]);
+
+
+        case 'BLOCK_DELETE':
+            return blocks.filter((block)=>block.id!==action.blockId);
+
+        default:
+            return blocks;
+    }
+}
 \--
 
 ##ui.ts
 /--code js
+const defaultUi = {
+    drawer:false,
+    color: '#cccccc',
+};
+
+
+export default function ui(ui=defaultUi, action) {
+    return {
+        drawer: action.type==='UI_DRAWER_TOGGLE'?(!ui.drawer):ui.drawer,
+        color:  action.type==='UI_COLOR_SET'?action.value:ui.color,
+    };
+}
 \--
 
-
 ##React
-React je Javascriptový framework pro psaní uživatelských rozhraní. Dále v tomto článku budu předpokládat základní znalost "Reactu":, "JSX syntaxe": a "react-redux":. Pokud o tomto frameworku slyšíš poprvé, můžeš si přečíst např. "tento článek":https://www.dzejes.cz/react-uvod.html.
-
+React je Javascriptový framework pro psaní uživatelských rozhraní. Dále v tomto článku budu předpokládat základní znalost "Reactu":https://facebook.github.io/react/, "JSX syntaxe":https://facebook.github.io/react/docs/introducing-jsx.html a "react-redux":https://github.com/reactjs/react-redux. Pokud o tomto frameworku slyšíš poprvé, můžeš si přečíst např. "tento článek":https://www.dzejes.cz/react-uvod.html.
 Také budu využívat "Material UI":http://www.material-ui.com/#/ , abych se nezdržoval stylováním komponent.
 
-
 Naše React komponenty budou:
-- **Root** bude obsahovat levou lištu, kde budou komponenty Heading a BlockColor. Tato lišta bude vysouvací.
-- **Heading** bude informace o počtu kostiček.
-- **BlockColor** zobrazí aktuální barvu bloku a umožní její změnu.
+-**Root** bude obsahovat levou lištu, kde budou komponenty Heading a BlockColor. Tato lišta bude vysouvací.
+-**Heading** bude informace o počtu kostiček.
+-**BlockColor** zobrazí aktuální barvu bloku a umožní její změnu.
 
 ##root.tsx
 /--code js
+import * as React from "react";
+import {connect} from 'react-redux';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+import Divider from 'material-ui/Divider';
+import * as FontAwesome from 'react-fontawesome';
+import BlockColor from './block-color';
+import Heading from './heading';
+
+
+function mapStateToProps(state){
+    return {
+        drawer: state.ui.drawer
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        onMenu: ()=>dispatch({type:'UI_DRAWER_TOGGLE'}),
+    }
+}
+
+function Root({drawer,onMenu}){
+    return (
+        <div>
+            <RaisedButton
+                onTouchTap={onMenu}
+                style={{
+                    position: 'fixed',
+                    zIndex: 3,
+                    top: 0,
+                    left: 0,
+                }}>
+                <FontAwesome name="bars"/>
+            </RaisedButton>
+
+
+            <Drawer style={{
+                zIndex: 5
+            }} open={drawer}>
+
+
+                <MenuItem onTouchTap={onMenu} leftIcon={<FontAwesome name="times"/>}>Close</MenuItem>
+
+                <Heading/>
+                <Divider />
+                <BlockColor/>
+
+
+            </Drawer>
+
+        </div>
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Root);
 \--
 
 ##heading.tsx
 /--code js
+import * as React from "react";
+import {connect} from 'react-redux';
+import MenuItem from 'material-ui/MenuItem';
+
+function mapStateToProps(state){
+    return {
+        size: state.blocks.length
+    };
+}
+
+function Heading({size}){
+    return (
+        <div>
+            <MenuItem>
+                <h2>{size} blocks world</h2>
+            </MenuItem>
+        </div>
+    )
+}
+
+
+export default connect(mapStateToProps)(Heading);
 \--
 
 ##block-color.tsx
 /--code js
+import * as React from "react";
+import {connect} from 'react-redux';
+import Subheader from 'material-ui/Subheader';
+import MenuItem from 'material-ui/MenuItem';
+
+function mapStateToProps(state){
+    return {
+        color: state.ui.color
+    };
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        colorChange: (event)=>dispatch({type:'UI_COLOR_SET',value:event.target.value}),
+    }
+}
+
+function BlockColor({color,colorChange}){
+    return (
+        <div>
+            <Subheader>Block color</Subheader>
+            <MenuItem>
+                <input type="color" value={color} onChange={colorChange}/>
+            </MenuItem>
+        </div>
+    )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BlockColor);
 \--
 
-Nakonec Root komponentu vyrendrujeme a !napojíme na store pomocí react-redux":
+Nakonec Root komponentu vyrendrujeme a "napojíme na store pomocí react-redux":https://github.com/reactjs/redux/blob/master/docs/basics/UsageWithReact.md
 /--code js
+ReactDOM.render(
+    <Provider store={store}>
+        <MuiThemeProvider>
+            <Root />
+        </MuiThemeProvider>
+    </Provider>,
+    root
+);
 \--
-
 
 Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
 V "dalším díle":https://www.itnetwork.cz/javascript/nasazeni-na-server ukáži nasazovaní celého projektu na server.

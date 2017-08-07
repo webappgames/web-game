@@ -4,7 +4,7 @@ import * as uuid from 'uuid';
 
 export default function createScene(canvas: HTMLCanvasElement, engine: BABYLON.Engine, store: Store<Object>): BABYLON.Scene {
     const scene = new BABYLON.Scene(engine);
-    scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
+    scene.clearColor = BABYLON.Color4.FromHexString('#c0faff'+'ff');
 
     const camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 4, Math.PI / 4, 10, BABYLON.Vector3.Zero(), scene);
     camera.fov = 1.2;

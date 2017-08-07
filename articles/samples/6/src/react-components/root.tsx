@@ -13,13 +13,13 @@ function mapStateToProps(state){
     return {
         drawer: state.ui.drawer
     };
-};
+}
 
 function mapDispatchToProps(dispatch){
     return {
         onMenu: ()=>dispatch({type:'UI_DRAWER_TOGGLE'}),
     }
-};
+}
 
 function Root({drawer,onMenu}){
     return (
@@ -53,6 +53,5 @@ function Root({drawer,onMenu}){
         </div>
     )
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

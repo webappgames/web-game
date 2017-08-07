@@ -6,8 +6,7 @@ function mapStateToProps(state){
     return {
         size: state.blocks.length
     };
-};
-
+}
 
 function Heading({size}){
     return (

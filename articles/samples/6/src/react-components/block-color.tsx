@@ -7,13 +7,13 @@ function mapStateToProps(state){
     return {
         color: state.ui.color
     };
-};
+}
 
 function mapDispatchToProps(dispatch){
     return {
         colorChange: (event)=>dispatch({type:'UI_COLOR_SET',value:event.target.value}),
     }
-};
+}
 
 function BlockColor({color,colorChange}){
     return (
