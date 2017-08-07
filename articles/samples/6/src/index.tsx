@@ -5,7 +5,6 @@ import * as ReactDOM from "react-dom";
 import {createStore} from 'redux';
 import { Provider } from 'react-redux';
 import * as injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createStateFromUri from './state-uri/create-state-from-uri';
 import createTitleFromState from './state-uri/create-title-from-state';
@@ -15,8 +14,7 @@ import updateScene from './scene/update-scene';
 import {stateReducer} from './redux-reducers/index';
 import {wrapReducer} from './tools/wrap-reducer';
 import Root from './react-components/root';
-
-
+injectTapEventPlugin();
 
 const store = createStore(wrapReducer(stateReducer), createStateFromUri(document.location.toString()));
 const root = document.getElementById("root");
