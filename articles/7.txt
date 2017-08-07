@@ -1,16 +1,66 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani jsem ukazoval výrobu user interface pro hru.
-V tomto díle ukáži nasazovaní celého projektu na server.
-
-##Nasazování přes FTP?
+V tomto posledním díle ukáži nasazovaní celého projektu na server.
 
 
-##node_modules
+
+První polovinu tutoriálu jsem vyráběl statické JavaScriptové soubory. Ty
+
+
+
+"Potom jsem ukázal, jaké jsou nevýhody tohoto postupu a přešel jsem na TypeScript"
+
+
+Mohl bych si nechat vytvořit statické soubory a dále postupovat stejně.
+
+
+code
+
+
+Navrávat věci na server přes
+Vše co se dělá ručně
+
+Můžeme tento postup automatizovat.
+
+
+
+Mnoho hostingů a
+
+
+
+
+
 
 
 ##Testy
 
+Bylo by dobré mít jistotu, že se při
 
-##Další
+
+
+Před každým nasazením můžeme proklikat aplikaci ručně, můžeme si
+
+- Pokud kliknu
+...
+...
+...
+
+
+To je ale zcela zbytečná práce. Tento "checklist" můžeš naprogramovat a počítač ho bude provádět za tebe.
+
+
+
+
+root.test.ts
+
+
+
+
+
+
+
+
+
+
 
 
 
