@@ -2,24 +2,21 @@ V "minulém díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani jsem
 V tomto posledním díle ukáži nasazovaní celého projektu na server.
 
 
+Nasazování na server
 
-První polovinu tutoriálu jsem vyráběl statické JavaScriptové soubory. Ty
+První polovinu tutoriálu jsem vyráběl statické JavaScriptové soubory. Ty se dají lehce nakopírovat na server např. pomocí FTP. Nevýhoda tohoto postupu je ta, že po každé změně musím aktualizované soubory kopírovat ručně. Také nastává doba, kdy jsou některé soubory ze staré a některé soubory z nové verze. To bývá velký problém u projektů, které mají být spolehlivé a chodí na ně mnoho lidí.
 
-
-
-"Potom jsem ukázal, jaké jsou nevýhody tohoto postupu a přešel jsem na TypeScript"
-
-
-Mohl bych si nechat vytvořit statické soubory a dále postupovat stejně.
-
+"Potom jsem ukázal, jaké jsou nevýhody čistého JavaScriptu a přešel jsem na TypeScript":. Mohl bych si nechat vytvořit statické soubory a dále postupovat stejně - tzn. při aktualizaci bych nejdříve zadal do konzole:
 
 code
 
+a potom bych to, co se mi vytvoří do složky static nakopíroval na server.
 
-Navrávat věci na server přes
-Vše co se dělá ručně
+Tento postup je OK, pokud budu aktualizovat aplikaci několikrát ročně. Pokud bych chtěl aktualizovat častěji např. každý týden či den, bylo by dobré celý postup automatizovat.
 
-Můžeme tento postup automatizovat.
+
+Contidefdsdfeagdaedh rdfhgIntegrf
+
 
 
 

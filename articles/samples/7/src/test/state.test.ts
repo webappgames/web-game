@@ -23,18 +23,18 @@ describe('blocks', () => {
 /*
 describe('ui', () => {
 
-    it('should increase number of blocks after dispatch UI_DRAWER_TOGGLE', () => {
+    it('should toggle drawer after dispatch UI_DRAWER_TOGGLE', () => {
         const oldState = store.getState();
-        store.dispatch({type:'BLOCK_ADD',newBlock:{}});
+        store.dispatch({type:'UI_DRAWER_TOGGLE'});
         const newState = store.getState();
-        expect(newState.blocks.length).toBe(oldState.blocks.length+1);
+        expect(newState.ui.drawer).toBe(!newState.ui.drawer);
     });
 
-    it('should descrease number of blocks after dispatch UI_COLOR_SET', () => {
+    it('should change color after dispatch UI_COLOR_SET', () => {
         const oldState = store.getState();
-        store.dispatch({type:'BLOCK_DELETE',blockId:oldState.blocks[0].id});
+        store.dispatch({type:'UI_COLOR_SET',value:'#123456'});
         const newState = store.getState();
-        expect(newState.blocks.length).toBe(oldState.blocks.length-1);
+        expect(newState.ui.color).toBe('#123456');
     });
 
 });*/
