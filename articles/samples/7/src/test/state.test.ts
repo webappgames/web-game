@@ -20,21 +20,20 @@ describe('blocks', () => {
     });
 
 });
-/*
+
 describe('ui', () => {
 
     it('should toggle drawer after dispatch UI_DRAWER_TOGGLE', () => {
         const oldState = store.getState();
         store.dispatch({type:'UI_DRAWER_TOGGLE'});
         const newState = store.getState();
-        expect(newState.ui.drawer).toBe(!newState.ui.drawer);
+        expect(newState.ui.drawer).toBe(!oldState.ui.drawer);
     });
 
     it('should change color after dispatch UI_COLOR_SET', () => {
-        const oldState = store.getState();
         store.dispatch({type:'UI_COLOR_SET',value:'#123456'});
         const newState = store.getState();
         expect(newState.ui.color).toBe('#123456');
     });
 
-});*/
+});
