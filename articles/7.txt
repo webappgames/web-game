@@ -2,18 +2,18 @@ V "minulém díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani jsem
 V tomto posledním díle ukáži nasazovaní celého projektu na server.
 
 ##Nasazování na server
-"První polovinu tutoriálu":xxxxxxxxxxx jsem vyráběl statické JavaScriptové soubory. Ty se dají lehce nakopírovat na server např. pomocí FTP.
+"První polovinu tutoriálu":https://www.itnetwork.cz/javascript/vytvor-si-vlastni-webovou-hru/ jsem vyráběl statické JavaScriptové soubory. Ty se dají lehce nakopírovat na server např. pomocí FTP.
 Nevýhodou tohoto postupu je, že po každé změně musím aktualizované soubory překopírovat ručně.V průběhu kopírování nastává doba, kdy jsou na serveru smíchané soubory ze staré a nové verze. A pokud kopírování selže, může se produkční verze rozbít úplně. To může způsobit obrovský problém u projektů, které mají být spolehlivé a navštěvuje je mnoho lidí.
 
 "Potom jsem ukázal, jaké jsou nevýhody čistého JavaScriptu a přešel jsem na TypeScript":https://www.itnetwork.cz/javascript/typescript. Teď už nemohu soubory překopírovat přímo. Mohu si ale nechat vytvořit transpilovaný JavaScriptový soubor a dále postupovat úplně stejně:
 /--code
 \--
-To, co se mi vytvoří do složky **build**xxxxxxxxxxxxx, nakopíruju na server.
+To, co se mi vytvoří do složky **build**, nakopíruju na server.
 
-Tento postup je OK, pokud budu aktualizovat aplikaci několikrát ročně, navštěvuje ji málo lidí a není potřebná přílišxxxxxxxxx velká spolehlivost. Pokud bych chtěl aktualizovat častěji např. každý den či týden, bylo by dobré celý postup automatizovat.
+Tento postup je OK, pokud budu aktualizovat aplikaci několikrát ročně, navštěvuje ji málo lidí a není potřebná příliš velká spolehlivost. Pokud bych chtěl aktualizovat častěji např. každý den či týden, bylo by dobré celý postup automatizovat.
 
-##Contidefdsdfeagdaedh xxxxxxxxxxxxxxxxxxxxx
-Mnoho hostingů má podporu CIxxxxxxxxxxx. To je proces, který převede zdrojové kódy aplikace na stav, kdy je nová verze nasazená pro uživatele. Pokud  máš vlastní (nebo virtuální) server můžeš si nainstalovat některý z CI nástrojů. Jedním z nich je např. "Strider":.
+##Continuous integration
+Mnoho hostingů má podporu continuous integration. To je proces, který převede zdrojové kódy aplikace na stav, kdy je nová verze nasazená pro uživatele. Pokud  máš vlastní (nebo virtuální) server můžeš si nainstalovat některý z continuous integration nástrojů. Jedním z nich je např. "Strider":.
 
 Impulzem pro nasazení nové verze může být tlačítko v administrace, příkaz v konzoli nebo nový commit v git repozitáři (obvykle ve větvi "production"). Potom se spustí několik kroků:
 1)Vytvoří se nějaké oddělené místo (např. nová složka) pro novou verzi aplikace.
@@ -21,22 +21,41 @@ Impulzem pro nasazení nové verze může být tlačítko v administrace, přík
 3)Spustí se **npm install**. To nainstaluje všechny závyslosti, které máme nastavené v **package.json**.
 4)Spustí se **npm build**. To vytvoří ze zdrojových souborů a nainstalovaných závyslostí jeden produkční JavaScriptový soubor.
 5)Spustí se testy. (Popíšu dále v článku.)
-6)Spustí se samotná aplikace. Zde si liší jednoduché hostingy (např. "GitHub Pages":xxxxxxxxxxxxx), které prostě přes https odesílají vytvořené produkční soubory a opravdové node.js hostingy (např. "Heroku":xxxxxxxxxxxx), které spustí přednastavený node.js skript.
+6)Spustí se samotná aplikace. Zde si liší jednoduché hostingy (např. "GitHub Pages":https://pages.github.com/), které prostě přes https odesílají vytvořené produkční soubory a opravdové node.js hostingy (např. "Heroku":https://www.heroku.com/), které spustí přednastavený node.js skript.
 7)Stará verze se vypne a přepne se za novou.
 
-My použijeme výše zmíněné "GitHub Pages":xxxxxxxxxxxxx.
+My použijeme výše zmíněné "GitHub Pages":https://pages.github.com/. Nejdříve nainstalujeme nástroj, který umí s GitHub Pages pracovat:
 /--code
 npm install gh-pages --dev
-xxxxxxxxxx
 \--
-Nyní stačí v administraci GitHubu nastavit GitHub Pages na větev **"xxxxxxxxxxxxx"**.
+Potom přidáme do **package.json** url hry pod GitHub pages pod hodnotu **homepage**. To je ve formátu https://[uživatel].github.io/[projekt]/. A do **scripts** přidáme **predeploy** a **deploy**.
+/--code js
+{
+  "name": "web-game",
+  "homepage": "https://hejny.github.io/web-game/",
+  "dependencies": {
+    //...
+  },
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    //...
+  },
+  "scripts": {
+    //...
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
+
+\--
+Nyní stačí v administraci GitHubu nastavit GitHub Pages na větev **"gh-pages"**.
 
 ##Testy
-Pokud commitnu něco chybného, proces CIxxxxxxxxxxxxxx zachová původní verzi a mě pouze upozorní. Tím se vyhnu nasazení vadné verze pro uživatele či znefunkčnění celé webové stránky. Existuje několik nejběžnějších druhů chyb:
+Pokud commitnu něco chybného, proces continuous integration zachová původní verzi a mě pouze upozorní. Tím se vyhnu nasazení vadné verze pro uživatele či znefunkčnění celé webové stránky. Existuje několik nejběžnějších druhů chyb:
 -Chybu v **syntaxi** (např. chybějící závorku) odhalí TypeScript transpilátor.
 -Chybu v **typování** odhalí TypeScript transpilátor. Pokud bychom nepoužívali TypeScript, tento druh chyb by se projevil až za běhu, což by mohlo mít mnohem horší následky.
 -Chyba za běhu (např. komponenta vyhodí chybu při rendrování).
--Logická chyba (např. "akce změní stav aplikace":xxxxxxxxxxxxxx tak jak jsme neočekávali).
+-Logická chyba (např. "akce změní stav aplikace":https://www.itnetwork.cz/javascript/3d-hra/stav-hry tak jak jsme neočekávali).
 
 Chyby v syntaxi a typování jsou otravné, odhalí se ale ještě před nasazením programu na produkci. Logické chyby a chyby za běhu se odhalují mnohem hůře. Mít chybu v běžící aplikaci je nepříjemné a často velmi drahé. Proto se píší automatizované testy, které odhalují chyby ještě před nasazením aplikace pr.
 Jak správně psát testy je velmi složitá disciplína. Já pro hru napíši několik testů:
