@@ -101,5 +101,5 @@ TypeScriptové soubory i s konfigurací umístím do složky **src** a do <body>
 Do souboru index.html už nebudu přidávat každý JavaScriptový soubor zvlášť, ale pouze jeden, který mi WebPack automaticky vytvoří spojením mých TypeScriptových souborů a nainstalovaných node_modules.
 
 
-Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
+Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/.
 V "dalším díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a Material UI.

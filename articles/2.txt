@@ -135,5 +135,5 @@ canvas.addEventListener("pointermove", onPointerMove, false);
 \--
 
 
-Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/ .
+Rozdělanou hru si můžeš stáhnout pod článkem, nebo jít do "Git repozitáře":https://github.com/hejny/web-game, kde najdeš nejnovější verzi zdrojových kódů. Nebo si ji "rovnou můžeš vyzkoušet na hejny.github.io/web-game":https://hejny.github.io/web-game/.
 V "dalším díle":https://www.itnetwork.cz/javascript/3d-hra/stav-hry ukáži, jak můžu držet stav celé aplikace lépe, než přímo ve scéně.
