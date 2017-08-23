@@ -1,6 +1,8 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/vytvor-si-vlastni-webovou-hru/ jsem ukázal, jak vytvořit jednoduchou scénu, kam se dají přidávat krychličky pomocí klikání myší.
 V tomto díle napíšu jak tyto krychle zarovnám do mřížky, jak je z této scény mohu mazat pomocí pravého tlačítka myši, něco o materiálech a jak docílit hover efektu.
 
+.<>
+[* web-game/2-main-preview.png .(Webová hra) *]
 
 Zarovnání do mřížky
 *******

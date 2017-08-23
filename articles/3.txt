@@ -3,6 +3,9 @@ V tomto díle ukážu, jak můžeme držet stav celé aplikace na jednom místě
 
 Před čtením tohoto článku je dobré znát základy "MVC architektury":https://www.itnetwork.cz/navrhove-vzory/mvc-architektura-navrhovy-vzor a něco o frameworku "Redux":http://redux.js.org/docs/introduction/CoreConcepts.html.
 
+.<>
+[* web-game/3-main-preview.png .(Webová hra) *]
+
 Stav aplikace
 #####
 Stav aplikace jsou data, která představují podstatu toho, co uživatel vidí na obrazovce.

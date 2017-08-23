@@ -1,6 +1,9 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/3d-hra/stav-hry jsem ukazoval, co to je stav aplikace a jak ho držet.
 V tomto díle ukáži, jaké výhody nám to přináší.
 
+.<>
+[* web-game/4-main-preview.png .(Webová hra) *]
+
 
 ##Logování
 Ve chvíli, kdy držíme stav aplikace na jednom místě, můžeme všechny jeho změny velmi elegantně logovat a tím vidět, co se v aplikaci děje. Vytvoříme si funkci wrapReducer.

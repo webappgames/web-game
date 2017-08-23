@@ -1,25 +1,7 @@
-Vytvoř si vlastní webovou hru
-Vylepšování základní scény
-Stav hry
-Zpět a Vpřed
 
 
+Bonusove clanky
 
 
-
-
-
-
-
-TypeScript
-User Interface
-
-
-
-Dolaďování (Ground)
-
-
-Deploy
-
-
-
+fps
+optimalizace

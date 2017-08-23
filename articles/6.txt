@@ -4,7 +4,7 @@ V tomto díle ukáži, jak vytvořím uživatelské rozhraní pomocí Reactu a M
 Nebudu vytvářet nic složitého. V rámci uživatelského rozhraní chci zobrazit výběr barvy bloku a zobrazený text s počtem kostiček. To vše v levé vysouvací liště vedle scény.
 
 .<>
-[* 6-main-preview.png .(aaaaa) *]
+[* web-game/6-main-preview.png .(Webová hra) *]
 
 ##Stav
 Abychom mohli všechny nové funkčnosti implementovat, musíme změnit strukturu stavu hry. Kromě bloků a poslední akce musíme držet stav uživatelského rozhraní. To budou dvě hodnoty navíc:

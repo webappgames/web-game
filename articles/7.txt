@@ -1,6 +1,9 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/uzivatelske-rozhrani jsem ukazoval výrobu user interface pro hru.
 V tomto posledním díle ukáži nasazovaní celého projektu na server.
 
+.<>
+[* web-game/7-main-preview.png .(Webová hra) *]
+
 ##Nasazování na server
 "První polovinu tutoriálu":https://www.itnetwork.cz/javascript/vytvor-si-vlastni-webovou-hru/ jsem vyráběl statické JavaScriptové soubory. Ty se dají lehce nakopírovat na server např. pomocí FTP.
 Nevýhodou tohoto postupu je, že po každé změně musím aktualizované soubory překopírovat ručně. V průběhu kopírování nastává doba, kdy jsou na serveru smíchané soubory ze staré a nové verze. A pokud kopírování selže, může se produkční verze rozbít úplně.

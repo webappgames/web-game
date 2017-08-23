@@ -1,6 +1,9 @@
 V "minulém díle":https://www.itnetwork.cz/javascript/zpet-a-vpred jsem ukazoval, co můžu díky stavu hry docílit.
 V tomto díle ukáži, jak spojím jednotlivé soubory do jednoho kompaktního celku.
 
+.<>
+[* web-game/5-main-preview.png .(Webová hra) *]
+
 ##Nadstavby JavaScriptu
 Zatím jsem všechny javascriptové soubory přidával přímo do index.html pomocí tagu <script>. To, co jsem naprogramoval, šlo přímo do prohlížeče. Tento postup má obrovskou výhodu v tom, že se vykonává přímo to, co píšu (tuhle vlastnost má například i jazyk PHP). Narozdíl od PHP však nemám úplnou kontrolu nad místem, kde se můj kód bude spouštět (u PHP se vše odehrává na mnou kontrolovaném serveru).
 JavaScript však běží v prohlížečích uživatelů a ty jsou různé v různých verzích a operačních systémech. Proto pokud programujeme v JavaScriptu přímo, nemůžeme velmi dobře využít některé jeho "nové výhody":http://es6-features.org/, protože musíte zvolit jeho nižší verzi a vzdát se některých jeho funkcí.

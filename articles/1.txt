@@ -5,7 +5,8 @@ Vše budu vyvíjet na "GitHubu":https://github.com/hejny/web-game a sem budu vž
 
 Až bude mít hra serverovou část umístím ji online na samostatnou doménu.
 
-
+.<>
+[* web-game/1-main-preview.png .(Webová hra) *]
 
 Hra na webu vs. webová hra
 ###
