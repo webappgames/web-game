@@ -1,6 +1,6 @@
 import * as uuid from 'uuid';
 
-export function loadState(key:string):Object{
+export function loadState(key: string): Object {
     try {
         const serializedState = localStorage.getItem(key);
         if (serializedState === null) {
@@ -11,13 +11,13 @@ export function loadState(key:string):Object{
         return null;
     }
 }
-export function saveState(state:Object){
+export function saveState(state: Object) {
     try {
         const key = uuid.v4();
         const serializedState = JSON.stringify(state);
-        localStorage.setItem(key,serializedState);
+        localStorage.setItem(key, serializedState);
         return key;
     } catch (err) {
-       return '';
+        return '';
     }
 }

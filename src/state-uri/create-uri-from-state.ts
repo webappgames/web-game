@@ -1,6 +1,6 @@
-import {saveState} from './state-saver';
+import { saveState } from './state-saver';
 
-export default function createUriFromState(state):string{
+export default function createUriFromState(state): string {
     const key = saveState(state);
     return `#${key}`;
 }

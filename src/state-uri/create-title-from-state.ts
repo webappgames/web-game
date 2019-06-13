@@ -1,9 +1,9 @@
-import {WEB_NAME,TITLE_SEPARATOR} from '../config';
+import { WEB_NAME, TITLE_SEPARATOR } from '../config';
 
-export default function createTitleFromState(state):string {
+export default function createTitleFromState(state): string {
     let titleParts = [];
 
-    if (state.blocks.length> 1) {
+    if (state.blocks.length > 1) {
         titleParts.push(state.blocks.length + ' blocks world');
     }
     titleParts.push(WEB_NAME);
