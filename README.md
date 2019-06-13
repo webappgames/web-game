@@ -1,3 +1,5 @@
+# `This project was made a long time ago. So expect not very updated stuff.`
+
 # Web Game
 
 This project is written for series of articles to ITNetwork.cz - https://www.itnetwork.cz/javascript/3d-hra.
